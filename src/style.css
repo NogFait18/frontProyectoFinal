@@ -1,0 +1,14 @@
+:root {
+    --text: #140807;
+    --textOpac: #140807d5 ;
+    --background: #fbf4f4;
+    --primary: #bf4c49;
+    --secondary: #d4d88e;
+    --accent: #abd078;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
