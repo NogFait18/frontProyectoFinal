@@ -11,4 +11,40 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+/* Estilos de los formularios */
+.body_form{
+    background: #000000;
+background: linear-gradient(90deg, var(--primary),var(--accent) 100%);
+}
+
+div{
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    border-radius: 10px;
+    gap: 1rem;
+    padding: 4rem;
+    font-size: 1.2rem;
+}
+.form_input{
+    border: none;
+    outline: 1px solid var(--textOpac);
+    border-radius: 5px;
+    height: 1.8rem;
+    padding: 5px;
+    text-align: center;
+    width: 15rem;
 }
