@@ -18,7 +18,14 @@
 /* Estilos de los formularios */
 .body_form{
     background: #000000;
-background: linear-gradient(90deg, var(--primary),var(--accent) 100%);
+    background: linear-gradient(90deg, var(--primary),var(--accent) 100%);
+}
+
+.h1_title{
+    text-align: center;
+    color: white;
+    padding: 1rem;
+    font-size: 2.2rem;
 }
 
 div{
@@ -31,20 +38,50 @@ div{
 .form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--background);
     border-radius: 10px;
-    gap: 1rem;
+    gap: 15px;
     padding: 4rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    min-height: 30rem;
+    max-height: 30rem;
+    position: relative;
+    width: 20rem;
+}
+.form_h2{
+    position: absolute;
+    top: 20px;
+}
+label{
+    margin-top: .5rem;
+    font-size: 1.1rem;
 }
 .form_input{
     border: none;
     outline: 1px solid var(--textOpac);
-    border-radius: 5px;
-    height: 1.8rem;
+    border-radius: 10px;
+    height: 2rem;
     padding: 5px;
     text-align: center;
     width: 15rem;
+    font-size: 1rem;
+}
+.form_button{
+    border: none;
+    background-color: var(--accent);
+    padding: 10px;
+    height: 2.5rem;
+    width: 12rem;
+    border-radius: 10px;
+    margin-top:1rem ;
+    font-size: 1rem;
+}
+.form_button:hover{
+    cursor: pointer;
+}
+.form_a{
+    margin-top: 2rem;
+    text-align: center;
 }

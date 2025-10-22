@@ -8,16 +8,23 @@
 </head>
 <body class="body_form">
     <main>
+        <header>
+            <h1 class="h1_title">Pizzeria</h1>
+        </header>
         <div>
         <form action="" class="form">
-            <label for="nombre">Nombre Completo:</label>
-            <input type="text" name="nombre" id="" class="form_input" placeholder="No escriban pelotudos">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="" class="form_input" placeholder="No escriban pelotudos">
-            <label for="contrasenia">Contraseña:</label>
-            <input type="password" name="contrasenia" id="" class="form_input" placeholder="No escriban pelotudos">
+            <h2 class="form_h2">Registro</h2>
+            <label for="name">Nombre Completo:</label>
+            <input type="text" name="name" id="name" class="form_input" placeholder="Pepito Ramirez">
+            <label for="mail">Email:</label>
+            <input type="mail" name="mail" id="mail" class="form_input" placeholder="example@mail.com">
+            <label for="pass">Contraseña:</label>
+            <input type="password" name="pass" id="pass" class="form_input" placeholder="**********">
+            <button type="submit" class="form_button">Registrarse</button>
+            <a href="../login/login.html" class="form_a">¿Ya tenes cuenta? Inicia Sesión</a>
         </form>
         </div>
     </main>
+    <script type="module" src="/src/pages/auth/register/register.ts"></script>
 </body>
 </html>

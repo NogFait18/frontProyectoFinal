@@ -6,15 +6,22 @@
     <link rel="stylesheet" href="/src/style.css">
     <title>Login</title>
 </head>
-<body>
+<body class="body_form">
     <main>
+        <header>
+            <h1 class="h1_title">Pizzeria</h1>
+        </header>
+        <div>
         <form action="" class="form">
+            <h2 class="form_h2">Login</h2>
             <label for="email">Email:</label>
-            <input type="email" name="email" id="" class="form_input">
+            <input type="email" name="email" id="" class="form_input" placeholder="example@mail.com">
             <label for="contrasenia">Contraseña:</label>
-            <input type="password" name="contrasenia" id="" class="form_input">
-            <a href="">registrarse</a>
+            <input type="password" name="contrasenia" id="" class="form_input" placeholder="**********">
+            <button type="submit" class="form_button">Iniciar Sesión</button>
+            <a href="../register/register.html" class="form_a">¿No tenes cuenta? Registrate</a>
         </form>
+        </div>
     </main>
 </body>
 </html>
