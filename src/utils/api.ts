@@ -45,7 +45,7 @@ export const fetchPostLogin = async(data:any)=>{
     throw new Error(`Error HTTP: ${response.status}`);
   }
 
-  const result = await response.json();
+  const result = await response.text();
   console.log(result);
   return result;
 }
