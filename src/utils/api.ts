@@ -1,12 +1,17 @@
 
+
+/* Metodo Get */
+
 const fetchUrl: string = "http://localhost:8080/usuario"
 
 /* Metodo Get */
-export const fetchGet = fetch(fetchUrl,{
-    method:"GET",
-})
-    .then((res)=> res.json())
-    .then((data) => console.log(data))
+export const fetchGet = async () => {
+  const response = await fetch(fetchUrl, { method: "GET" });
+  if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
 
 
 /* Metodo Post */

@@ -14,12 +14,12 @@ btn?.addEventListener("click", async (e) => {
     contrasenia: contrasenia.value.trim()
   };
 
-  console.log(data)
+  alert(data)
   // Validación: si falta algún dato, mostrar alerta y salir
   if (!data.email || !data.contrasenia) {
     return; // ⚠️ No continúa ni hace fetch ni redirección
   }
-  console.log(data)
+  alert(data)
 
   try {
     // Llamada al fetchPost exportado
