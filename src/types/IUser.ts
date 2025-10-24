@@ -1,5 +1,5 @@
-/* interface IUser {
+export interface IUser {
     name: String,
     mail: String,
     pass: String
-} */
+}
