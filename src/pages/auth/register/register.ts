@@ -1,4 +1,4 @@
-import { fetchGet } from "../../../utils/api";
+//import { fetchGet } from "../../../utils/api";
 import { fetchPost } from "../../../utils/api";
 
 const nombre = document.getElementById('nombre') as HTMLInputElement
@@ -6,12 +6,17 @@ const apellido = document.getElementById('apellido') as HTMLInputElement
 const email = document.getElementById('email') as HTMLInputElement
 const celular = document.getElementById('celular') as HTMLInputElement
 const contrasenia = document.getElementById('contrasenia') as HTMLInputElement
-const btn = document.getElementById('button_register')
+//const btn = document.getElementById('button_register')
+const form = document.querySelector(".form") as HTMLFormElement;
 
 
 
-btn?.addEventListener("click", async () => {
+
+
+form?.addEventListener("submit", async (e) => {
   // Evita que se recargue el formulario
+
+    e.preventDefault();
 
   // Crear el objeto con los valores de los inputs
   const data = {
@@ -40,6 +45,3 @@ btn?.addEventListener("click", async () => {
   }
 });
 
-
-
-fetchGet

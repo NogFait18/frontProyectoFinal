@@ -42,8 +42,8 @@ div{
     align-items: center;
     background-color: var(--background);
     border-radius: 10px;
-    gap: 15px;
     padding: 4rem;
+    gap: 5px;
     font-size: 1rem;
     min-height: 30rem;
     max-height: 30rem;
@@ -55,8 +55,7 @@ div{
     top: 20px;
 }
 label{
-    margin-top: .5rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 .form_input{
     border: none;
@@ -82,6 +81,6 @@ label{
     cursor: pointer;
 }
 .form_a{
-    margin-top: 2rem;
+    margin-top: .4rem;
     text-align: center;
 }

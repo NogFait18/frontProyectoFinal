@@ -1,3 +1,4 @@
+import type { IUser, IUserLogin } from "../types/IUser";
 
 
 /* Metodo Get */
@@ -15,7 +16,7 @@ export const fetchGet = async () => {
 
 
 /* Metodo Post */
-export const fetchPost = async (data: any) => {
+export const fetchPost = async (data: IUser) => {
   const response = await fetch(fetchUrl, {
     method: "POST",
     headers: {
@@ -37,7 +38,7 @@ export const fetchPost = async (data: any) => {
 
 const urlLogin: string = "http://localhost:8080/usuario/login"
 
-export const fetchPostLogin = async(data:any)=>{
+export const fetchPostLogin = async(data:IUserLogin)=>{
   const response = await fetch(urlLogin, {
     method: "POST",
     headers: {
@@ -50,7 +51,7 @@ export const fetchPostLogin = async(data:any)=>{
     throw new Error(`Error HTTP: ${response.status}`);
   }
 
-  const result = await response.json();
+  const result = await response.text();
   console.log(result);
   return result;
 }
