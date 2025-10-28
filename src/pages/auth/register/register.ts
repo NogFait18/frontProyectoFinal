@@ -1,5 +1,5 @@
 //import { fetchGet } from "../../../utils/api";
-import { fetchPost } from "../../../utils/api";
+import { registrarUsuario } from "../../../utils/api";
 
 const nombre = document.getElementById('nombre') as HTMLInputElement
 const apellido = document.getElementById('apellido') as HTMLInputElement
@@ -33,8 +33,8 @@ form?.addEventListener("submit", async (e) => {
   }
 
   try {
-    // Llamada al fetchPost exportado
-    const response = await fetchPost(data); // ✅ ya exportado y configurado
+    // Llamada al registrarUsuario exportado
+    const response = await registrarUsuario(data); // ✅ ya exportado y configurado
     console.log("Usuario registrado:", response);
 
     // Redirigir solo si todo salió bien

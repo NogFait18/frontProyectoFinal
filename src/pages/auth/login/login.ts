@@ -1,4 +1,4 @@
-import { fetchPostLogin } from "../../../utils/api";
+import {logearUsuario} from "../../../utils/api";
 
 const email = document.getElementById("mail") as HTMLInputElement;
 const contrasenia = document.getElementById("pass") as HTMLInputElement;
@@ -22,7 +22,7 @@ form?.addEventListener("submit", async (e) => {
 
     try {
         // Llamada al fetchPost exportado
-        const response = await fetchPostLogin(data); // ✅ ya exportado y configurado
+        const response = await logearUsuario(data); // ✅ ya exportado y configurado
         console.log("Usuario inicio sesion correctamente:", response);
 
         // Redirigir solo si todo salió bien
