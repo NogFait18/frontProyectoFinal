@@ -67,6 +67,17 @@ label{
     width: 15rem;
     font-size: 1rem;
 }
+
+.form_input:invalid{
+    animation: justshake 0.3s forwards;
+    border-color: #abd078;
+}
+@keyframes justshake{
+    25% { transform:  translateX(5px);}
+    50% { transform:  translateX(-5px);}
+    75% { transform:  translateX(5px);}
+    100% { transform:  translateX(-5px);}
+}
 .form_button{
     border: none;
     background-color: var(--accent);
