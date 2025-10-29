@@ -11,18 +11,19 @@
         <header>
             <h1 class="h1_title">Pizzeria</h1>
         </header>
-        <div>
+        <div class="div_form">
         <form action="" class="form">
             <h2 class="form_h2">Login</h2>
             <label for="mail">Email:</label>
-            <input type="mail" name="mail" id="mail" class="form_input" placeholder="example@mail.com">
+            <input type="mail" name="mail" id="mail" class="form_input" placeholder="example@mail.com" required>
             <label for="pass">Contraseña:</label>
-            <input type="password" name="pass" id="pass" class="form_input" placeholder="**********">
-            <button type="submit" class="form_button" id="button_login">Iniciar Sesión</button>
-            <a href="../register/register.html" class="form_a">¿No tenes cuenta? Registrate</a>
+            <input type="password" name="pass" id="pass" class="form_input" placeholder="**********" required>
+            <button type="submit" class="form_button">Iniciar Sesión</button>
+            <a href="../register/register.html" class="form_a" id="button_login">¿No tenes cuenta? Registrate</a>
         </form>
         </div>
     </main>
     <script type="module" src="/src/pages/auth/login/login.ts"></script>
 </body>
 </html>
+

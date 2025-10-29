@@ -1,7 +1,7 @@
 :root {
     --text: #140807;
     --textOpac: #140807d5 ;
-    --background: #fbf4f4;
+    --background: #eae5e5;
     --primary: #bf4c49;
     --secondary: #d4d88e;
     --accent: #abd078;
@@ -28,7 +28,7 @@
     font-size: 2.2rem;
 }
 
-div{
+.div_form{
     min-height: 80vh;
     display: flex;
     align-items: center;
@@ -67,6 +67,17 @@ label{
     width: 15rem;
     font-size: 1rem;
 }
+
+.form_input:invalid{
+    animation: justshake 0.3s forwards;
+    border-color: #abd078;
+}
+@keyframes justshake{
+    25% { transform:  translateX(5px);}
+    50% { transform:  translateX(-5px);}
+    75% { transform:  translateX(5px);}
+    100% { transform:  translateX(-5px);}
+}
 .form_button{
     border: none;
     background-color: var(--accent);
@@ -83,4 +94,92 @@ label{
 .form_a{
     margin-top: .4rem;
     text-align: center;
+}
+
+
+/* Estilos de la pagina admin */
+
+.headerAdm{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 3rem;
+    box-shadow: 0px 0px 10px 0px black;
+    z-index: 100;
+}
+
+.nav_ul{
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    align-items: center;
+}
+.nav_ul a{
+    text-decoration: none;
+    color: var(--text);
+}
+.nav_ul button{
+    border: none;
+    padding: .4rem;
+    border-radius: 10px;
+}
+
+.adm{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+.adm_panelAdm{
+    width: 90%;
+    padding: 1rem;
+    background-color: var(--background);
+    z-index: -20;
+}
+.panelAdm_controles{
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+    
+}
+.tarjetaAdm{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    color: white;
+    padding: 2rem;
+    font-size: .8rem;
+    width: 11rem;
+    border-radius: 10px;
+}
+.panelAdm_controles > :nth-child(1){
+    background: linear-gradient(90deg,rgba(66, 227, 206, 1) 14%, rgba(54, 37, 161, 1) 92%);
+}
+.panelAdm_controles > :nth-child(2){
+    background: linear-gradient(90deg,rgba(66, 90, 227, 1) 14%, rgba(101, 161, 37, 1) 92%); 
+
+}
+.panelAdm_controles > :nth-child(3){
+    background: linear-gradient(90deg,rgba(211, 227, 66, 1) 14%, rgba(161, 37, 37, 1) 92%);
+}
+.panelAdm_controles > :nth-child(4){
+    background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+}
+
+.tarjetaAdm button{
+    border: none;
+    padding: .4rem;
+    border-radius: 10px;
+}
+
+.adm_controles{
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: 1px 5px 10px 0px black;
+}
+
+.panelControl{
+    font-size: .9rem;
+    margin: 1.5rem;
 }
