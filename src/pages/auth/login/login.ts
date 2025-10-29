@@ -54,7 +54,7 @@ form?.addEventListener("submit", async (e) => {
         // Redirigir solo si todo salió bien
         setTimeout(()=>{
            // Redirigir después de mostrar el toast
-          window.location.href = "../../home.html";
+          window.location.href = "../../store/home.html";
         },1500)
     } catch (error) {
         console.error("Error al iniciar sesion:", error);

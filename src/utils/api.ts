@@ -3,8 +3,6 @@ import type { IUser, IUserLogin } from "../types/IUser";
 // importacion de la URL para no repetir codigo, desde .ENV
 const API_URL = `${import.meta.env.VITE_API_URL}/usuario`;
 
-
-
 //        ENPOINTS USUARIOS
 //        ENPOINTS USUARIOS
 
