@@ -10,7 +10,7 @@
 
     /*Paleta de colores admin*/
     --admText: black;
-    --admBackgorund: rgb(214, 214, 214);
+    --admBackgorund: rgb(244, 244, 244);
     --admPrimary: rgb(66, 123, 202);
     --admSecondary: rgb(26, 82, 172);
     --admAccent: rgb(229, 212, 165);
@@ -268,6 +268,7 @@ label {
     z-index: 3;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     
 }
 
@@ -278,25 +279,49 @@ label {
     padding: 0.4rem;
 }
 
-.card_container{
-    border: 2px solid rgb(0, 187, 255);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 1rem;
-    padding:0.4rem ;
-}
-
-.card_categoria{
-    border:2px solid lime;
+.card_container {
     width: 100%;
     display: flex;
-    max-height: 6rem;
-    gap: 1rem;
-
-
+    flex-direction: column;
+    gap: .4rem;
+    background-color: var(--background);
+    border-radius: 8px;
+    padding: 1rem;
 }
+.categorias_header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr 3fr 2fr;
+    font-weight: bold;
+    background-color: var(--admPrimary);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 6px;
+    color: white;
+}
+
+.categoria_row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr 3fr 2fr;
+    align-items: center;
+    padding: 0.6rem;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    gap: 1rem;
+}
+.categoria_img {
+    width: 80px;
+    aspect-ratio:auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.categoria_btn-container{
+    display: flex;
+}
+
+
+
 
 
 /* Admin button generico */
@@ -307,7 +332,7 @@ label {
     color: var(--admText);
     box-shadow: none;
     border: none;
-    padding: 0.3rem;
+    padding: 0.4rem;
     margin: auto;
 }
 
