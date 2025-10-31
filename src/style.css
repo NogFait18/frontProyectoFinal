@@ -46,7 +46,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    padding-bottom: 2rem;
 }
 
 .form {
@@ -61,9 +61,10 @@ body {
     font-size: 1rem;
     min-height: 30rem;
     max-height: none;
-    height: auto;
+    height: 0;
     position: relative;
     width: 20rem;
+    
 }
 
 .form_h2 {
