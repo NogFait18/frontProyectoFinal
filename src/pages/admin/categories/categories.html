@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/style.css">
-    <title>Admin Home</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <title>Categorias</title>
 </head>
+
 <body>
     <header class="headerAdm">
         <div class="headerAdm_div">
@@ -14,7 +16,7 @@
         <nav class="header_nav">
             <ul class="nav_ul">
                 <li><a href="">Tienda</a></li>
-                <li><a href="">Panel Admin</a></li>
+                <li><a href="../adminHome/adminHome.html">Panel Admin</a></li>
                 <!-- Aca cambiar despues porque tiene que traer el nombre de usuario -->
                 <li><a href="">Juan Perez</a></li>
                 <li><button>Cerrar Sesión</button></li>
@@ -32,36 +34,29 @@
                 <section class="panelControl">📦Pedidos</section>
                 <section class="panelControl">🏪Ver Tienda</section>
             </aside>
-            <div class="adm_panelAdm">
-                <h1>Panel de Administración</h1>
-                <div class="panelAdm_controles">
-                    <section class="tarjetaAdm">
-                        <h3>📂Categorias</h3>
-                        <p>5</p>
-                        <button>
-                            <a href="../categories/categories.html">Gestionar</a>
-
-                        </button>
-                    </section>
-                    <section class="tarjetaAdm">
-                        <h3>🍔Productos</h3>
-                        <p>35</p>
-                        <button>Gestionar</button>
-                    </section>
-                    <section class="tarjetaAdm">
-                        <h3>📦Pedidos</h3>
-                        <p>563</p>
-                        <button>Gestionar</button>
-                    </section>
-                    <section class="tarjetaAdm">
-                        <h3>✅Disponible</h3>
-                        <p>9</p>
-                        <button>Gestionar</button>
+            <div class="adm_categorias-container">
+                <div class="adm_titulo" >
+                    <h1>Categorias</h1>
+                    <button class="adm_btn-exito">+ Agregar Categoria</button>
+                </div>
+                <!-- modelo a reutilizar en categorias y productos, esto no va despues -->
+                <div class="card_container">
+                    <section class="card_categoria">
+                        <h4 class="id">h12</h4>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-GyoD-seFIBMeey-XXEr3oFElWqvns_j3jw&s"
+                        alt="Pizza napolitana">
+                        <h4>Pizza</h4>
+                        <p>Pizzas con masa fermentada por 3 dias en frio, muzzarella de primera calidad y a comerla</p>
+                        <button class="adm_btn">Editar Categoria</button>
+                        <button class="adm_btn">Borrar categoria</button>
                     </section>
                 </div>
+
             </div>
         </div>
     </main>
+
 </body>
-<script type="module" src="./adminHome.ts"></script>
+<script src="./categories.ts"></script>
+
 </html>
