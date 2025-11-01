@@ -1,3 +1,4 @@
+import type { ICategoria } from "../types/ICategoria";
 import type { IUser, IUserLogin } from "../types/IUser";
 
 // importacion de la URL para no repetir codigo, desde .ENV
@@ -57,10 +58,20 @@ export const logearUsuario = async(data:IUserLogin)=>{
 //        ENPOINTS CATEGORIAS
 //        ENPOINTS CATEGORIAS
 
-
-
-
-
-
-
-
+export const crearCategoria = async(data:ICategoria)=>{
+  const response = await fetch(`${API_URL}/categorias`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  
+  if (!response.ok) {
+    throw new Error(`Error HTTP: ${response.status}`);
+  }
+  
+  const result = await response.text();
+  console.log(result);
+  return result;
+}

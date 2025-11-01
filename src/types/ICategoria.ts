@@ -4,5 +4,5 @@ export interface ICategoria{
     nombre:String
     imagen:String
     descripcion:String
-    productos: [IProductos]
+    productos?: [IProductos]
 }
