@@ -42,7 +42,7 @@ btnAgregarCat.addEventListener("click", () => {
 
   // Capturar el formulario
   const form = modal.querySelector("#formCategoria") as HTMLFormElement;
-  form.addEventListener("submit", (e: SubmitEvent) => {
+  form.addEventListener("submit", async (e: SubmitEvent) => {
     e.preventDefault();
 
     const formData = new FormData(form);
@@ -51,11 +51,20 @@ btnAgregarCat.addEventListener("click", () => {
     const url = formData.get("url") as string;
     const data = {
         nombre:nombre,
-        descripcion:descripcion,
-        imagen:url
+        imagen:url,
+        descripcion:descripcion
     }
 
-    crearCategoria(data)
+    try {
+      console.log("ASDASDASD");
+      
+       await crearCategoria(data)
+      console.log("ADADSADASD 2");
+      
+    } catch (err){
+      console.log("Ocurrio un error al añadir una categoria catch en categori ts " + err);
+      
+    }
 
     overlay.remove(); // cerrar modal
 

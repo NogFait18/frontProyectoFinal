@@ -2,7 +2,7 @@ import type { ICategoria } from "../types/ICategoria";
 import type { IUser, IUserLogin } from "../types/IUser";
 
 // importacion de la URL para no repetir codigo, desde .ENV
-const API_URL = `${import.meta.env.VITE_URL_API}/usuario`;
+const API_URL = `${import.meta.env.VITE_URL_API}`;
 
 //        ENPOINTS USUARIOS
 //        ENPOINTS USUARIOS
@@ -38,7 +38,7 @@ export const mostrarUsuarios = async () => {
 export const registrarUsuario = async (data: IUser) => {
 
     /* modifico la url, apunta a /login  pero aca estamos registrando*/
-  const response = await fetch(`${API_URL}`, {
+  const response = await fetch(`${API_URL}/usuario`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -90,7 +90,9 @@ export const crearCategoria = async(data:ICategoria)=>{
   });
   
   if (!response.ok) {
-    throw new Error(`Error HTTP: ${response.status}`);
+    console.log("Aca esta saltando un error en api TS");
+    throw new Error(`Error HTTP: ${response.status} ${response.body}`);
+    
   }
   
   const result = await response.text();
