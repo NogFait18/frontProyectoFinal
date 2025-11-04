@@ -58,7 +58,7 @@ export const registrarUsuario = async (data: IUser) => {
 
 /* Fetch Login Validación metodo para logearse*/
 export const logearUsuario = async(data:IUserLogin)=>{
-  const response = await fetch(`${API_URL}/login`, {
+  const response = await fetch(`${API_URL}/usuario/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -98,4 +98,20 @@ export const crearCategoria = async(data:ICategoria)=>{
   const result = await response.text();
   console.log(result);
   return result;
+}
+
+
+// GET para categorias
+
+
+export const obtenerCategorias = async () =>{
+  try {
+    const res = await fetch(`${API_URL}/categorias`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const datos = await res.json();
+    return datos;
+  } catch (err) {
+    console.error('Error al obtener las categorias mediante el fetch: ', err);
+    throw err;
+  }
 }

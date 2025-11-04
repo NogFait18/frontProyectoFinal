@@ -1,7 +1,6 @@
-import {logearUsuario} from "../../../utils/api";
+import { logearUsuario } from "../../../utils/api";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
-
 
 const email = document.getElementById("mail") as HTMLInputElement;
 const contrasenia = document.getElementById("pass") as HTMLInputElement;
@@ -10,23 +9,23 @@ const form = document.querySelector(".form") as HTMLFormElement;
 
 // Función para mostrar toast
 const showToast = (mensaje: string, color: string = "#333") => {
-  Toastify({
-  text: mensaje,
-  duration: 2500,
-  gravity: "top",
-  position: "right",
-  close: true,
-  style: {
-    background: color,
-    height: "40px",      // altura fija
-    minHeight: "40px",   // evita que se estire
-    padding: "0 10px",   // reduce espacio vertical
-    fontSize: "14px",    // tamaño de texto más pequeño
-    display: "flex",
-    alignItems: "center", // centra el texto verticalmente
-    color:"black"
-  },
-}).showToast();
+    Toastify({
+        text: mensaje,
+        duration: 2500,
+        gravity: "top",
+        position: "right",
+        close: true,
+        style: {
+            background: color,
+            height: "40px", // altura fija
+            minHeight: "40px", // evita que se estire
+            padding: "0 10px", // reduce espacio vertical
+            fontSize: "14px", // tamaño de texto más pequeño
+            display: "flex",
+            alignItems: "center", // centra el texto verticalmente
+            color: "black",
+        },
+    }).showToast();
 };
 
 form?.addEventListener("submit", async (e) => {
@@ -55,20 +54,19 @@ form?.addEventListener("submit", async (e) => {
         showToast("Inicio de sesión exitoso", "#f7f7f7f7");
 
         // Redirigir solo si todo salió bien
-        setTimeout(()=>{
-           // Redirigir después de mostrar el toast
-          // window.location.href = "../../store/home.html";
-          //window.location.href = "../../admin/adminHome/adminHome.html";
-          
-          const rol = response.rol?.toUpperCase()
-          console.log(rol)
-          if (rol === "ADMIN") {
-            window.location.href = "../../admin/adminHome/adminHome.html";
-          } else {
-            window.location.href = "../../store/home.html";
-          }
+        setTimeout(() => {
+            // Redirigir después de mostrar el toast
+            // window.location.href = "../../store/home.html";
+            //window.location.href = "../../admin/adminHome/adminHome.html";
 
-        },1500)
+            const rol = response.rol?.toUpperCase();
+            console.log(rol);
+            if (rol === "ADMIN") {
+                window.location.href = "../../admin/adminHome/adminHome.html";
+            } else {
+                window.location.href = "../../store/home.html";
+            }
+        }, 1500);
     } catch (error) {
         console.error("Error al iniciar sesion:", error);
         showToast("Error al iniciar sesión", "#bf4c49");

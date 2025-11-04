@@ -1,6 +1,50 @@
-const btnAgregarCat = document.getElementById("btnAgregarCat") as HTMLButtonElement;
-const cardContainer = document.getElementById("card_container") as HTMLElement | null;
+import type { ICategoria } from '../../../types/ICategoria';
+const btnAgregarCat = document.getElementById(
+  "btnAgregarCat"
+) as HTMLButtonElement;
+const cardContainer = document.getElementById(
+  "card_container"
+) as HTMLElement | null;
 import { crearCategoria } from "../../../utils/api";
+
+import { obtenerCategorias } from "../../../utils/api";
+
+// cargar categorias
+
+const dataCategorias = await obtenerCategorias();
+
+dataCategorias.forEach((e : ICategoria) => {
+  const cardGroup = document.createElement("div");
+    cardGroup.classList.add("categoria_group");
+
+    cardGroup.innerHTML = `
+      <div class="categorias_header">
+        <span>ID</span>
+        <span>Imagen</span>
+        <span>Nombre</span>
+        <span>Descripción</span>
+        <span>Acción</span>
+      </div>
+
+      <div class="categoria_row">
+        <span></span>
+        <img src="${e.imagen}" alt="${e.nombre}" class="categoria_img">
+        <span>${e.nombre}</span>
+        <p>${e.descripcion}</p>
+        <div class="categoria_btn-container">
+          <button class="adm_btn">Editar</button>
+          <button class="adm_btn-peligro">Borrar</button>
+        </div>
+      </div>
+    `;
+
+    // Agregar el bloque al contenedor principal
+    cardContainer?.appendChild(cardGroup);
+  });
+  
+
+// Hasta aca llega la fx para renderizar las categorias
+
 
 btnAgregarCat.addEventListener("click", () => {
   // Crear overlay
@@ -50,25 +94,22 @@ btnAgregarCat.addEventListener("click", () => {
     const descripcion = formData.get("desc") as string;
     const url = formData.get("url") as string;
     const data = {
-        nombre:nombre,
-        imagen:url,
-        descripcion:descripcion
-    }
+      nombre: nombre,
+      imagen: url,
+      descripcion: descripcion,
+    };
 
     try {
-      console.log("ASDASDASD");
-      
-       await crearCategoria(data)
-      console.log("ADADSADASD 2");
-      
-    } catch (err){
-      console.log("Ocurrio un error al añadir una categoria catch en categori ts " + err);
-      
+      console.log("primer com entrando al try");
+
+      await crearCategoria(data);
+      console.log("2do com despues de crear categoria");
+    } catch (err) {
+      console.log("Ocurrio un error al añadir una categoria " + err);
     }
 
     overlay.remove(); // cerrar modal
 
-    
     if (!cardContainer) return;
 
     // 🔹 Crear un contenedor que incluye encabezado + datos
