@@ -49,12 +49,25 @@ form?.addEventListener("submit", async (e) => {
         const response = await logearUsuario(data); // ✅ ya exportado y configurado
         console.log("Usuario inicio sesion correctamente:", response);
 
+        // Guardamos el usuario en el localStorage
+        localStorage.setItem("usuario", JSON.stringify(response));
+
         showToast("Inicio de sesión exitoso", "#f7f7f7f7");
 
         // Redirigir solo si todo salió bien
         setTimeout(()=>{
            // Redirigir después de mostrar el toast
-          window.location.href = "../../store/home.html";
+          // window.location.href = "../../store/home.html";
+          //window.location.href = "../../admin/adminHome/adminHome.html";
+          
+          const rol = response.rol?.toUpperCase()
+          console.log(rol)
+          if (rol === "ADMIN") {
+            window.location.href = "../../admin/adminHome/adminHome.html";
+          } else {
+            window.location.href = "../../store/home.html";
+          }
+
         },1500)
     } catch (error) {
         console.error("Error al iniciar sesion:", error);
