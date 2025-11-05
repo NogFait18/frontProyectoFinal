@@ -369,7 +369,8 @@ label {
 }
 .categorias_header {
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1.5fr 3fr 2fr;
+    grid-template-columns: 1fr 2fr 2fr 3fr 1fr 1fr 1fr 2fr; /* 8 columnas */
+    align-items: center;
     font-weight: bold;
     background-color: var(--admPrimary);
     color: var(--text);

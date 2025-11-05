@@ -1,4 +1,4 @@
-import type { ICategoria } from '../../../types/ICategoria';
+import type { ICategoriaMostrar } from '../../../types/ICategoria';
 const btnAgregarCat = document.getElementById(
   "btnAgregarCat"
 ) as HTMLButtonElement;
@@ -13,7 +13,7 @@ import { obtenerCategorias } from "../../../utils/api";
 
 const dataCategorias = await obtenerCategorias();
 
-dataCategorias.forEach((e : ICategoria) => {
+dataCategorias.forEach((e : ICategoriaMostrar) => {
   const cardGroup = document.createElement("div");
     cardGroup.classList.add("categoria_group");
 
@@ -27,7 +27,7 @@ dataCategorias.forEach((e : ICategoria) => {
       </div>
 
       <div class="categoria_row">
-        <span></span>
+        <span>${e.id}</span>
         <img src="${e.imagen}" alt="${e.nombre}" class="categoria_img">
         <span>${e.nombre}</span>
         <p>${e.descripcion}</p>

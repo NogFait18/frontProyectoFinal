@@ -90,8 +90,10 @@ export const crearCategoria = async(data:ICategoria)=>{
   });
   
   if (!response.ok) {
-    console.log("Aca esta saltando un error en api TS");
-    throw new Error(`Error HTTP: ${response.status} ${response.body}`);
+    // Obtenemos el cuerpo del error para ver el mensaje real
+      const errorText = await response.text();
+      console.error("Error HTTP:", response.status, errorText);
+      throw new Error(`Error HTTP: ${response.status} - ${errorText}`);
     
   }
   
@@ -115,3 +117,81 @@ export const obtenerCategorias = async () =>{
     throw err;
   }
 }
+
+
+
+
+// PUT para categorias
+
+export const editarCategoria = async (id: number, data: ICategoria) => {
+  const response = await fetch(`${API_URL}/categorias/${id}`, {
+    method: "PUT", // o PATCH, según tu backend
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  return await response.json();
+};
+
+//POST para productos
+
+export const crearProducto = async(data:ICategoria)=>{
+  const response = await fetch(`${API_URL}/productos`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  
+  if (!response.ok) {
+    // Obtenemos el cuerpo del error para ver el mensaje real
+      const errorText = await response.text();
+      console.error("Error HTTP:", response.status, errorText);
+      throw new Error(`Error HTTP: ${response.status} - ${errorText}`);
+    
+  }
+  
+  const result = await response.text();
+  console.log(result);
+  return result;
+}
+
+
+
+// GET para Productos
+
+
+export const obtenerProductos = async () =>{
+  try {
+    const res = await fetch(`${API_URL}/productos`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const datos = await res.json();
+    return datos;
+  } catch (err) {
+    console.error('Error al obtener las categorias mediante el fetch: ', err);
+    throw err;
+  }
+}
+
+// PUT para categorias
+
+export const editarProductos = async (id: number, data: ICategoria) => {
+  const response = await fetch(`${API_URL}/productos/${id}`, {
+    method: "PUT", // o PATCH, según tu backend
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  return await response.json();
+};
