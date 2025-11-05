@@ -478,3 +478,114 @@ label {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* productDetail barra */
+/* --- Estilos para la Tabla de Productos --- */
+
+.product-table-container {
+    width: 100%;
+    overflow-x: auto; /* Para que sea responsive en móviles */
+}
+
+.product-table {
+    width: 100%;
+    /* Separa los bordes para poder usar border-radius en las filas */
+    border-collapse: separate; 
+    /* Espacio entre las filas */
+    border-spacing: 0 1rem; 
+    text-align: left;
+    white-space: nowrap; /* Evita que el texto se parta en varias líneas */
+}
+
+/* --- Cabecera (naranja) --- */
+.product-table thead tr {
+    background-color: #f96c5a; /* Color naranja/coral de la cabecera */
+    color: white;
+}
+
+.product-table th {
+    padding: 1rem 1.25rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
+
+/* Esquinas redondeadas para la cabecera */
+.product-table th:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.product-table th:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+
+/* --- Cuerpo (filas blancas) --- */
+.product-table tbody tr {
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px; /* Esquinas redondeadas para la fila de datos */
+}
+
+.product-table td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    font-size: 0.9rem;
+    color: #555;
+    /* Asegura que las celdas sigan el borde redondeado de la fila */
+}
+
+/* Esquinas redondeadas para las celdas de datos */
+.product-table td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.product-table td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- Estilos de contenido específico --- */
+.product-table_image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.product-table_stock--available {
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50px; /* Para hacerlo circular/píldora */
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.product-table_actions {
+    display: flex;
+    gap: 0.5rem; /* Espacio entre botones */
+}
+
+.product-table_btn {
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.product-table_btn--edit {
+    background-color: #e0e0e0; /* Gris claro */
+    color: #333;
+}
+
+.product-table_btn--delete {
+    background-color: #dc3545; /* Rojo */
+}
+
