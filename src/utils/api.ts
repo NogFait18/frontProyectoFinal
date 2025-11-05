@@ -4,8 +4,9 @@ import type { IUser, IUserLogin } from "../types/IUser";
 // importacion de la URL para no repetir codigo, desde .ENV
 const API_URL = `${import.meta.env.VITE_URL_API}`;
 
+//-------------------------------------------------------------------------------------------------------------------------
 //        ENPOINTS USUARIOS
-//        ENPOINTS USUARIOS
+//-------------------------------------------------------------------------------------------------------------------------
 
 /* Metodo Get  para mostrar usuarios*/
 /* comento este metodo que llama automaticamente al fetch y provoca un error*/
@@ -77,8 +78,9 @@ export const logearUsuario = async(data:IUserLogin)=>{
 }
 
 
+//-------------------------------------------------------------------------------------------------------------------------
 //        ENPOINTS CATEGORIAS
-//        ENPOINTS CATEGORIAS
+//-------------------------------------------------------------------------------------------------------------------------
 
 export const crearCategoria = async(data:ICategoria)=>{
   const response = await fetch(`${API_URL}/categorias`, {
@@ -137,6 +139,30 @@ export const editarCategoria = async (id: number, data: ICategoria) => {
 
   return await response.json();
 };
+
+// DELETE para eliminar categorias
+
+export const eliminarCategoria = async (id: number) => {
+  const response = await fetch(`${API_URL}/categorias/${id}`, {
+    method: "DELETE",
+  })
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  const result = await response.text();
+  console.log("Categoria eliminada con exito: ", result);
+  return result;
+
+}
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------
+// ENDPOINTS PARA PRODUCTOS
+//-------------------------------------------------------------------------------------------------------------------------
 
 //POST para productos
 
