@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../style.css">
+    <title>🍔Productos</title>
+
+</head>
+<body>
+
+    <header class="headerAdm">
+        <div class="headerAdm_div">
+            <h2 class="h2_admin">🍕Food Store</h2>
+        </div>
+        <nav class="header_nav">
+            <ul class="nav_ul">
+                <li><a href="">Tienda</a></li>
+                <li><a href="../adminHome/adminHome.html">Panel Admin</a></li>
+                <!-- Aca cambiar despues porque tiene que traer el nombre de usuario -->
+                <li><a href="">Jhonny Cojo</a></li>
+                <li><button>Cerrar Sesión</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="adm">
+            <aside class="adm_controles">
+                <h3>Administración</h3>
+                <p>Panel de control</p>
+                <nav class="panel">
+                <section class="panelControl"> <a href="../adminHome/adminHome.html">📊DashBoard</a></section>
+                <section class="panelControl"> <a href="../admin/categories/categorias.html">📂Categorias</a> </section> <!--verificar esta ruta-->
+                <section class="panelControl"><a href="../productDetail/productDetail.html">🍔Productos</a></section>
+                <section class="panelControl">📦Pedidos</section>
+                <section class="panelControl">🏪Ver Tienda</section>
+                </nav>
+            </aside>
+            <div class="adm_categorias-container">
+                <div class="adm_titulo">
+                    <h1>Gestión de Productos</h1>
+                    <button class="adm_btn-exito" id="btnAgregarCat">+Nuevo Producto</button>
+                </div>                
+
+                <div class="product-table-container">
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+
+                <!--<th>Descripción</th>   -->
+                <!--<th>Precio</th> -->
+                <!--<th>Precio</th> -->
+                <!--<th>Categoría</th> -->
+                <!--<th>Stock</th> -->
+                <!--<th>Estado</th> -->
+                
+            </tr>
+        </thead>
+        
+        <tbody id="product-table-container">
+            
+
+            </tbody>
+    </table>
+</div>
+           
+</div>
+     </div>
+
+        
+
+    </main>
+
+</body>
+</html>
+
