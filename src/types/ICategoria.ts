@@ -7,3 +7,10 @@ export interface ICategoria{
     // cambiar despues que no reciba un opcional
     //productos?: [IProductos]
 }
+
+export interface ICategoriaMostrar{
+    id:Number
+    nombre:String
+    imagen:String
+    descripcion:String
+}
