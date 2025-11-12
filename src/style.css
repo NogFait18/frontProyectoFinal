@@ -1,64 +1,82 @@
 :root {
+
+    /* Paleta de colores cliente*/
     --text: #140807;
-    --textOpac: #140807d5 ;
-    --background: #fbf4f4;
+    --textOpac: #140807d5;
+    --background: #efecec;
     --primary: #bf4c49;
     --secondary: #d4d88e;
     --accent: #abd078;
+
+    /*Paleta de colores admin*/
+    --admText: black;
+    --admBackgorund: rgb(244, 244, 244);
+    --admPrimary: rgb(66, 123, 202);
+    --admSecondary: rgb(26, 82, 172);
+    --admAccent: rgb(229, 212, 165);
 }
 
-*{
+* {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    background-color: var(--background);
 }
 
 
 /* Estilos de los formularios */
-.body_form{
+.body_form {
     background: #000000;
-    background: linear-gradient(90deg, var(--primary),var(--accent) 100%);
+    background: linear-gradient(90deg, var(--primary), var(--accent) 100%);
 }
 
-.h1_title{
+.h1_title {
     text-align: center;
     color: white;
     padding: 1rem;
     font-size: 2.2rem;
 }
 
-div{
+.div_form {
     min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    padding-bottom: 2rem;
 }
-.form{
+
+.form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: var(--background);
     border-radius: 10px;
-    gap: 15px;
     padding: 4rem;
+    gap: 5px;
     font-size: 1rem;
     min-height: 30rem;
-    max-height: 30rem;
+    max-height: none;
+    height: 0;
     position: relative;
     width: 20rem;
+    
 }
-.form_h2{
+
+.form_h2 {
     position: absolute;
     top: 20px;
 }
-label{
-    margin-top: .5rem;
-    font-size: 1.1rem;
+
+label {
+    font-size: 1.2rem;
 }
-.form_input{
+
+.form_input {
     border: none;
     outline: 1px solid var(--textOpac);
     border-radius: 10px;
@@ -68,20 +86,507 @@ label{
     width: 15rem;
     font-size: 1rem;
 }
-.form_button{
+
+.form_input:invalid {
+    animation: justshake 0.3s forwards;
+    border-color: #abd078;
+}
+
+@keyframes justshake {
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(-5px);
+    }
+}
+
+.form_button {
     border: none;
     background-color: var(--accent);
     padding: 10px;
     height: 2.5rem;
     width: 12rem;
     border-radius: 10px;
-    margin-top:1rem ;
+    margin-top: 1rem;
     font-size: 1rem;
 }
-.form_button:hover{
+
+.form_button:hover {
     cursor: pointer;
 }
-.form_a{
-    margin-top: 2rem;
+
+.form_a {
+    margin-top: .4rem;
     text-align: center;
 }
+
+
+/* Estilos de la pagina admin */
+
+.headerAdm {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    align-items: center;
+    height: 3rem;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.814);
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    z-index: 10;
+}
+
+.nav_ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav_ul a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.nav_ul button {
+    border: none;
+    padding: .4rem;
+    border-radius: 5px;
+    background: rgb(226, 51, 20);
+    background: linear-gradient(90deg,
+            rgb(226, 51, 20) 0%,
+            rgb(226, 78, 20) 70%,
+            rgb(226, 178, 20) 100%);
+    color: white;
+    font-weight: bolder;
+}
+
+.adm {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+    /* margin-top: .6rem; */
+}
+
+.adm_panelAdm {
+    width: 90%;
+    padding: 1rem;
+    /* background-color: var(--background); */
+    z-index: 3;
+}
+
+
+.panelAdm_controles {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+    gap: .5rem;
+    align-items: start;
+    flex-wrap: wrap;
+
+}
+
+.tarjetaAdm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 15rem;
+    align-items: center;
+    color: white;
+    padding: 2rem;
+    font-size: .8rem;
+    width: 11rem;
+    border-radius: 10px;
+}
+
+.panelAdm_controles> :nth-child(1) {
+    background: #e64500;
+    background: linear-gradient(130deg, rgba(230, 69, 0, 1) 0%, rgba(219, 69, 35, 1) 51%, rgba(242, 136, 44, 1) 100%);
+
+}
+
+.panelAdm_controles> :nth-child(4) {
+
+
+    background: #cf00e6;
+    background: linear-gradient(130deg, rgba(207, 0, 230, 1) 0%, rgba(124, 35, 219, 1) 44%, rgba(97, 44, 242, 1) 100%);
+}
+
+.panelAdm_controles> :nth-child(3) {
+    background: #e60008;
+    background: linear-gradient(130deg, rgb(230, 0, 73) 0%, rgb(219, 35, 133) 44%, rgb(242, 44, 186) 100%);
+
+}
+
+.panelAdm_controles> :nth-child(2) {
+    background: #00e64d;
+    background: linear-gradient(130deg, rgba(0, 230, 77, 1) 0%, rgba(35, 219, 136, 1) 51%, rgba(44, 242, 169, 1) 100%);
+
+}
+
+.tarjetaAdm button {
+    border: none;
+    padding: .4rem;
+    border-radius: 5px;
+}
+
+/* Numero de las tarjetas admin */
+.tarjetaAdm p {
+    font-size: 1.5rem;
+
+}
+
+/* aside */
+
+.adm_controles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.799);
+    background-color: #ffffff;
+    max-height: 30rem;
+    /* justify-content: space-between; */
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  padding: 1rem 0;
+  border-radius: 12px;
+  font-family: "Poppins", sans-serif;
+}
+
+.panelControl {
+  margin: 0.2rem 0;
+  width: 100%;
+}
+
+.panelControl a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #111827;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.2rem;
+  border-left: 4px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.panelControl a:hover {
+  color: #ffffff;
+  border-left: 4px solid #60a5fa;
+}
+
+/* Estado activo */
+.panelControl a.active {
+  
+  font-weight: 600;
+}
+
+/* Opcional: animación de entrada */
+.panelControl a.active {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+
+.panelControl {
+  margin: 0.4rem 0;
+}
+
+.panelControl a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.panelControl a:hover {
+  background-color: #374151;
+  color: white;
+}
+
+.panelControl a.active {
+  background-color: #3b82f6; /* azul */
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+
+.panelControl {
+    font-size: .9rem;
+    margin: 1.5rem;
+}
+
+
+/*  Panel de control y botones CATEGORIAS  */
+
+.adm_categorias-container {
+    width: 90%;
+    padding: 1rem;
+    /* background-color: var(--background); */
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+}
+
+.adm_titulo{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0.4rem;
+}
+
+.card_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    background-color: var(--background);
+    border-radius: 8px;
+    padding: 1rem;
+}
+.categorias_header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 3fr 1fr 1fr 1fr 2fr; /* 8 columnas */
+    align-items: center;
+    font-weight: bold;
+    background-color: var(--admPrimary);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 6px;
+    color: white;
+}
+
+.categoria_row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr 3fr 2fr;
+    align-items: center;
+    padding: 0.6rem;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    gap: 1rem;
+}
+.categoria_img {
+    width: 80px;
+    aspect-ratio:auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.categoria_btn-container{
+    display: flex;
+}
+
+
+
+
+
+/* Admin button generico */
+.adm_btn {
+    
+    border-radius: 5px;
+    background-color: var(--admBackgorund);
+    color: var(--admText);
+    box-shadow: none;
+    border: none;
+    padding: 0.4rem;
+    margin: auto;
+}
+
+.adm_btn-exito {
+    border-radius: 5px;
+    background-color: var(--admBackgorund);
+    color: var(--admText);
+    box-shadow: none;
+    border: none;
+    padding: 0.3rem;
+    background-color: #39b964;
+    color: rgb(243, 243, 243);
+    padding: 0.6rem;
+    font-weight: 900;
+}
+
+.adm_btn-peligro{
+    border-radius: 5px;
+    background-color: var(--admBackgorund);
+    color: var(--admText);
+    box-shadow: none;
+    border: none;
+    padding: 0.3rem;
+    background-color: #ac282c;
+    color: rgb(243, 243, 243);
+
+}
+
+/* Modal de agregar categorias */
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal_content {
+  background: #fff;
+  padding: 3.5rem;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal_close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* productDetail barra */
+/* --- Estilos para la Tabla de Productos --- */
+
+.product-table-container {
+    width: 100%;
+    overflow-x: auto; /* Para que sea responsive en móviles */
+}
+
+.product-table {
+    width: 100%;
+    /* Separa los bordes para poder usar border-radius en las filas */
+    border-collapse: separate; 
+    /* Espacio entre las filas */
+    border-spacing: 0 1rem; 
+    text-align: left;
+    white-space: nowrap; /* Evita que el texto se parta en varias líneas */
+}
+
+/* --- Cabecera (naranja) --- */
+.product-table thead tr {
+    background-color: #f96c5a; /* Color naranja/coral de la cabecera */
+    color: white;
+}
+
+.product-table th {
+    padding: 1rem 1.25rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
+
+/* Esquinas redondeadas para la cabecera */
+.product-table th:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.product-table th:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+
+/* --- Cuerpo (filas blancas) --- */
+.product-table tbody tr {
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px; /* Esquinas redondeadas para la fila de datos */
+}
+
+.product-table td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    font-size: 0.9rem;
+    color: #555;
+    /* Asegura que las celdas sigan el borde redondeado de la fila */
+}
+
+/* Esquinas redondeadas para las celdas de datos */
+.product-table td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.product-table td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- Estilos de contenido específico --- */
+.product-table_image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.product-table_stock--available {
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50px; /* Para hacerlo circular/píldora */
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.product-table_actions {
+    display: flex;
+    gap: 0.5rem; /* Espacio entre botones */
+}
+
+.product-table_btn {
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.product-table_btn--edit {
+    background-color: #e0e0e0; /* Gris claro */
+    color: #333;
+}
+
+.product-table_btn--delete {
+    background-color: #dc3545; /* Rojo */
+}
+

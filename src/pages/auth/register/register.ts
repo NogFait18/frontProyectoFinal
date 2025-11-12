@@ -1,5 +1,6 @@
-//import { fetchGet } from "../../../utils/api";
-import { fetchPost } from "../../../utils/api";
+import { registrarUsuario } from "../../../utils/api";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 const nombre = document.getElementById('nombre') as HTMLInputElement
 const apellido = document.getElementById('apellido') as HTMLInputElement
@@ -9,16 +10,30 @@ const contrasenia = document.getElementById('contrasenia') as HTMLInputElement
 //const btn = document.getElementById('button_register')
 const form = document.querySelector(".form") as HTMLFormElement;
 
-
-
-
+// Función para mostrar toast
+const showToast = (mensaje: string, color: string = "#333") => {
+  Toastify({
+  text: mensaje,
+  duration: 2500,
+  gravity: "top",
+  position: "right",
+  close: true,
+  style: {
+    background: color,
+    height: "40px",      // altura fija
+    minHeight: "40px",   // evita que se estire
+    padding: "0 10px",   // reduce espacio vertical
+    fontSize: "14px",    // tamaño de texto más pequeño
+    display: "flex",
+    alignItems: "center",
+    color:"black" // centra el texto verticalmente
+  },
+}).showToast();
+};
 
 form?.addEventListener("submit", async (e) => {
-  // Evita que se recargue el formulario
+  e.preventDefault();
 
-    e.preventDefault();
-
-  // Crear el objeto con los valores de los inputs
   const data = {
     nombre: nombre.value.trim(),
     apellido: apellido.value.trim(),
@@ -27,21 +42,24 @@ form?.addEventListener("submit", async (e) => {
     contrasenia: contrasenia.value.trim(),
   };
 
-  // Validación: si falta algún dato, mostrar alerta y salir
+  // Validación de campos
   if (!data.nombre || !data.apellido || !data.email || !data.celular || !data.contrasenia) {
-    return; // ⚠️ No continúa ni hace fetch ni redirección
+    return;
   }
 
   try {
     // Llamada al fetchPost exportado
-    const response = await fetchPost(data); // ✅ ya exportado y configurado
+    const response = await registrarUsuario(data); // ✅ ya exportado y configurado
     console.log("Usuario registrado:", response);
 
-    // Redirigir solo si todo salió bien
-    window.location.href = "./src/pages/auth/login/login.html";
+    showToast("Usuario registrado correctamente", "#f7f7f7f7");
+
+    // Redirigir después de mostrar el toast
+    setTimeout(() => {
+      window.location.href = "./src/pages/auth/login/login.html";
+    }, 1500);
   } catch (error) {
     console.error("Error al registrar:", error);
-    alert("Ocurrió un error al registrar el usuario.");
+    showToast("Error al registrar usuario", "#bf4c49");
   }
 });
-
