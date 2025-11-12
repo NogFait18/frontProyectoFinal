@@ -205,13 +205,19 @@ export const obtenerProductos = async () =>{
   }
 }
 
-// PUT para categorias
+// PUT para Productos
 
-export const editarProductos = async (id: number, data: ICategoria) => {
+export const editarProductos = async (id: number, data: any) => {
+  // Aseguramos que el valor del estado coincida con el enum del backend
+  const estadoValido = data.estado === "activo" ? "DISPONIBLE" : "NODISPONIBLE";
+
   const response = await fetch(`${API_URL}/productos/${id}`, {
-    method: "PUT", // o PATCH, según tu backend
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      ...data,
+      estado: estadoValido,
+    }),
   });
 
   if (!response.ok) {
@@ -221,3 +227,23 @@ export const editarProductos = async (id: number, data: ICategoria) => {
 
   return await response.json();
 };
+
+
+
+// DELETE para eliminar productos
+
+export const eliminarProducto = async (id: number) => {
+  const response = await fetch(`${API_URL}/productos/${id}`, {
+    method: "DELETE",
+  })
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  const result = await response.text();
+  console.log("Producto eliminada con exito: ", result);
+  return result;
+
+}

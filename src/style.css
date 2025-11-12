@@ -21,6 +21,7 @@
     margin: 0px;
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
 }
 
 body {
@@ -64,7 +65,7 @@ body {
     height: 0;
     position: relative;
     width: 20rem;
-    
+
 }
 
 .form_h2 {
@@ -239,6 +240,10 @@ label {
     border-radius: 5px;
 }
 
+.tarjetaAdm button a {
+    color: var(--textOpac);
+}
+
 /* Numero de las tarjetas admin */
 .tarjetaAdm p {
     font-size: 1.5rem;
@@ -257,78 +262,87 @@ label {
     max-height: 30rem;
     /* justify-content: space-between; */
 }
+
 .panel {
-  display: flex;
-  flex-direction: column;
-  color: black;
-  padding: 1rem 0;
-  border-radius: 12px;
-  font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    padding: 1rem 0;
+    border-radius: 12px;
+    font-family: "Poppins", sans-serif;
 }
 
 .panelControl {
-  margin: 0.2rem 0;
-  width: 100%;
+    margin: 0.2rem 0;
+    width: 100%;
 }
 
 .panelControl a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: #111827;
-  font-size: 0.95rem;
-  padding: 0.8rem 1.2rem;
-  border-left: 4px solid transparent;
-  transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #111827;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.2rem;
+    border-left: 4px solid transparent;
+    transition: all 0.25s ease;
 }
 
 .panelControl a:hover {
-  color: #ffffff;
-  border-left: 4px solid #60a5fa;
+    color: #ffffff;
+    border-left: 4px solid #60a5fa;
 }
 
 /* Estado activo */
 .panelControl a.active {
-  
-  font-weight: 600;
+
+    font-weight: 600;
 }
 
 /* Opcional: animación de entrada */
 .panelControl a.active {
-  animation: fadeIn 0.3s ease;
+    animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateX(-10px); }
-  to { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 
 .panelControl {
-  margin: 0.4rem 0;
+    margin: 0.4rem 0;
 }
 
 .panelControl a {
-  display: block;
-  text-decoration: none;
-  color: black;
-  font-weight: 500;
-  padding: 0.6rem 0.8rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
 .panelControl a:hover {
-  background-color: #374151;
-  color: white;
+    background-color: #374151;
+    color: white;
 }
 
 .panelControl a.active {
-  background-color: #3b82f6; /* azul */
-  color: white;
-  font-weight: 600;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    background-color: #3b82f6;
+    /* azul */
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
 }
 
 
@@ -348,10 +362,10 @@ label {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    
+
 }
 
-.adm_titulo{
+.adm_titulo {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -367,9 +381,11 @@ label {
     border-radius: 8px;
     padding: 1rem;
 }
+
 .categorias_header {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 3fr 1fr 1fr 1fr 2fr; /* 8 columnas */
+    grid-template-columns: 1fr 2fr 2fr 3fr 1fr 1fr 1fr 2fr;
+    /* 8 columnas */
     align-items: center;
     font-weight: bold;
     background-color: var(--admPrimary);
@@ -389,14 +405,15 @@ label {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     gap: 1rem;
 }
+
 .categoria_img {
     width: 80px;
-    aspect-ratio:auto;
+    aspect-ratio: auto;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.categoria_btn-container{
+.categoria_btn-container {
     display: flex;
 }
 
@@ -406,7 +423,7 @@ label {
 
 /* Admin button generico */
 .adm_btn {
-    
+
     border-radius: 5px;
     background-color: var(--admBackgorund);
     color: var(--admText);
@@ -414,6 +431,7 @@ label {
     border: none;
     padding: 0.4rem;
     margin: auto;
+
 }
 
 .adm_btn-exito {
@@ -429,7 +447,7 @@ label {
     font-weight: 900;
 }
 
-.adm_btn-peligro{
+.adm_btn-peligro {
     border-radius: 5px;
     background-color: var(--admBackgorund);
     color: var(--admText);
@@ -443,41 +461,48 @@ label {
 
 /* Modal de agregar categorias */
 .modal_overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 .modal_content {
-  background: #fff;
-  padding: 3.5rem;
-  border-radius: 10px;
-  width: 350px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  position: relative;
-  animation: fadeIn 0.3s ease;
+    background: #fff;
+    padding: 3.5rem;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease;
 }
 
 .modal_close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* productDetail barra */
@@ -485,22 +510,25 @@ label {
 
 .product-table-container {
     width: 100%;
-    overflow-x: auto; /* Para que sea responsive en móviles */
+    overflow-x: auto;
+    /* Para que sea responsive en móviles */
 }
 
 .product-table {
     width: 100%;
     /* Separa los bordes para poder usar border-radius en las filas */
-    border-collapse: separate; 
+    border-collapse: separate;
     /* Espacio entre las filas */
-    border-spacing: 0 1rem; 
+    border-spacing: 0 1rem;
     text-align: left;
-    white-space: nowrap; /* Evita que el texto se parta en varias líneas */
+    white-space: nowrap;
+    /* Evita que el texto se parta en varias líneas */
 }
 
 /* --- Cabecera (naranja) --- */
 .product-table thead tr {
-    background-color: #f96c5a; /* Color naranja/coral de la cabecera */
+    background-color: #f96c5a;
+    /* Color naranja/coral de la cabecera */
     color: white;
 }
 
@@ -516,6 +544,7 @@ label {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
+
 .product-table th:last-child {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -526,7 +555,8 @@ label {
 .product-table tbody tr {
     background-color: #FFFFFF;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    border-radius: 8px; /* Esquinas redondeadas para la fila de datos */
+    border-radius: 8px;
+    /* Esquinas redondeadas para la fila de datos */
 }
 
 .product-table td {
@@ -542,6 +572,7 @@ label {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
+
 .product-table td:last-child {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -557,10 +588,12 @@ label {
 }
 
 .product-table_stock--available {
-    background-color: #28a745; /* Verde */
+    background-color: #28a745;
+    /* Verde */
     color: white;
     padding: 0.3rem 0.6rem;
-    border-radius: 50px; /* Para hacerlo circular/píldora */
+    border-radius: 50px;
+    /* Para hacerlo circular/píldora */
     font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -568,7 +601,8 @@ label {
 
 .product-table_actions {
     display: flex;
-    gap: 0.5rem; /* Espacio entre botones */
+    gap: 0.5rem;
+    /* Espacio entre botones */
 }
 
 .product-table_btn {
@@ -582,11 +616,207 @@ label {
 }
 
 .product-table_btn--edit {
-    background-color: #e0e0e0; /* Gris claro */
+    background-color: #e0e0e0;
+    /* Gris claro */
     color: #333;
 }
 
 .product-table_btn--delete {
-    background-color: #dc3545; /* Rojo */
+    background-color: #dc3545;
+    /* Rojo */
 }
 
+/* ---------- CONTENEDOR GENERAL ---------- */
+#card_containerPro {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    background-color: #f1eeee;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+/* ---------- TABLA / ENCABEZADO ---------- */
+.producto_group {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.productos_header {
+    display: grid;
+    grid-template-columns: 60px 100px 150px 1fr 100px 80px 100px 150px;
+    background-color: #4b83d1;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.75rem 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.productos_header span {
+    font-size: 0.95rem;
+}
+
+/* ---------- FILAS DE PRODUCTOS ---------- */
+.producto_row {
+    display: grid;
+    grid-template-columns: 60px 100px 150px 1fr 100px 80px 100px 150px;
+    align-items: center;
+    text-align: center;
+    padding: 0.75rem 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    transition: background-color 0.2s ease;
+}
+
+.producto_row:hover {
+    background-color: #f5f7fa;
+}
+
+/* ---------- IMAGEN ---------- */
+.producto_img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #e2e2e2;
+    margin: auto;
+}
+
+/* ---------- TEXTO ---------- */
+.producto_row p {
+    margin: 0;
+    text-align: left;
+    padding: 0 0.5rem;
+    color: #333;
+    font-size: 0.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---------- BOTONES ---------- */
+.producto_btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.adm_btn,
+.adm_btn-peligro {
+    border: none;
+    border-radius: 6px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.adm_btn {
+    background-color: #e9ecef;
+    color: #222;
+}
+
+.adm_btn:hover {
+    background-color: #d4dae0;
+}
+
+.adm_btn-peligro {
+    background-color: #c62828;
+    color: white;
+}
+
+.adm_btn-peligro:hover {
+    background-color: #b71c1c;
+}
+
+/* ---------- MODAL ---------- */
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal_content {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 95%;
+    padding: 1.5rem 2rem;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal_close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal_close:hover {
+    color: #333;
+}
+
+.form_h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #4b83d1;
+}
+
+.form_input,
+.form_button,
+select {
+    width: 100%;
+    margin-bottom: 0.9rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+.form_input:focus {
+    outline: 2px solid #4b83d1;
+    border-color: #4b83d1;
+}
+
+.form_button {
+    background-color: #4b83d1;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.form_button:hover {
+    background-color: #3b6fb3;
+}
