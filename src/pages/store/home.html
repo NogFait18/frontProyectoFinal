@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <link rel="stylesheet" href="../../style.css">
+    <title>FoodStore Home</title>
 </head>
 <body>
-    <h1>Cuantas veces les voy a decir que dejen de escribir?</h1>
+    <header class="headerAdm">
+        <div class="headerAdm_div">
+            <h2 class="h2_admin">🍕Food Store</h2>
+        </div>
+        <nav class="header_nav">
+            <ul class="nav_ul">
+                <li><a href="">Tienda</a></li>
+                <li><a href="../adminHome/adminHome.html">Panel Admin</a></li>
+                <!-- Aca cambiar despues porque tiene que traer el nombre de usuario -->
+                <li>Juan Perez</li>
+                <li><button>Cerrar Sesión</button></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="adm">
+            <aside class="adm_controles">
+                <h3>Categorias</h3>
+                <p>Filtrar por categorias</p>
+                <nav class="panel" id="categoriasPanel">
+                <section class="panelControl">
+                    <button class="categoria_btn-filtro">🍽️ Ver todo</button>
+                </section>
+                <section class="panelControl">
+                    <button class="categoria_btn-filtro">ejemplo hamburguesa</button>
+                </section>
+                
+                </nav>
+            </aside>
+            <div class="adm_categorias-container">
+                
+            </div>
+        </div>
+        <div class="card_container-productos">
+            <section class="home_card-producto">
+                <img src="imagen del producto" alt="producto.nombre">
+                <div class="producto_descripcion-container">
+                    <h4>Categoria del producto</h4>
+                    <h3>Nombre del producto</h3>
+                    <p>descripcion del producto</p>
+                    <div class="producto_precio">
+                        <span>precio del producto</span>
+                        <span>estado del producto</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="./home.ts"></script>
 </body>
+
 </html>

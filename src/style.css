@@ -14,6 +14,7 @@
     --admPrimary: rgb(66, 123, 202);
     --admSecondary: rgb(26, 82, 172);
     --admAccent: rgb(229, 212, 165);
+    --colorDarkGray: rgb(66, 78, 105);
 }
 
 * {
@@ -69,7 +70,6 @@ body {
 }
 
 .form_h2 {
-    position: absolute;
     top: 20px;
 }
 
@@ -257,6 +257,7 @@ label {
     flex-direction: column;
     align-items: center;
     padding: 1.5rem;
+    gap: 0.5rem;
     box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.799);
     background-color: #ffffff;
     max-height: 30rem;
@@ -266,10 +267,13 @@ label {
 .panel {
     display: flex;
     flex-direction: column;
+    align-items: center;
     color: black;
-    padding: 1rem 0;
-    border-radius: 12px;
+    padding: 0.5rem 0;
+    border-radius: 5px;
     font-family: "Poppins", sans-serif;
+    gap: 0.5rem;
+    width: 100%;
 }
 
 .panelControl {
@@ -382,10 +386,33 @@ label {
     padding: 1rem;
 }
 
-.categorias_header {
+/* backup render de categorias y productos*/
+/* .categorias_header {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 3fr 1fr 1fr 1fr 2fr;
-    /* 8 columnas */
+    /* 8 columnas 
+    align-items: center;
+    font-weight: bold;
+    background-color: var(--admPrimary);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 6px;
+    color: white;
+} */
+
+/* .categoria_row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr 3fr 2fr;
+    align-items: center;
+    padding: 0.6rem;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    gap: 1rem;
+} */
+.categorias_header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr 3fr 1fr;
     align-items: center;
     font-weight: bold;
     background-color: var(--admPrimary);
@@ -394,7 +421,6 @@ label {
     border-radius: 6px;
     color: white;
 }
-
 .categoria_row {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1.5fr 3fr 2fr;
@@ -422,42 +448,7 @@ label {
 
 
 /* Admin button generico */
-.adm_btn {
 
-    border-radius: 5px;
-    background-color: var(--admBackgorund);
-    color: var(--admText);
-    box-shadow: none;
-    border: none;
-    padding: 0.4rem;
-    margin: auto;
-
-}
-
-.adm_btn-exito {
-    border-radius: 5px;
-    background-color: var(--admBackgorund);
-    color: var(--admText);
-    box-shadow: none;
-    border: none;
-    padding: 0.3rem;
-    background-color: #39b964;
-    color: rgb(243, 243, 243);
-    padding: 0.6rem;
-    font-weight: 900;
-}
-
-.adm_btn-peligro {
-    border-radius: 5px;
-    background-color: var(--admBackgorund);
-    color: var(--admText);
-    box-shadow: none;
-    border: none;
-    padding: 0.3rem;
-    background-color: #ac282c;
-    color: rgb(243, 243, 243);
-
-}
 
 /* Modal de agregar categorias */
 .modal_overlay {
@@ -717,22 +708,83 @@ label {
 }
 
 .adm_btn {
-    background-color: #e9ecef;
-    color: #222;
+
+    border-radius: 5px;
+    background-color: var(--admBackgorund);
+    color: var(--admText);
+    box-shadow: none;
+    border: none;
+    padding: 0.4rem;
+    margin: auto;
+
 }
 
 .adm_btn:hover {
-    background-color: #d4dae0;
+
+    background-color: var(--colorDarkGray);
+    color: white;
+    border-left: 4px solid #60a5fa;
+
 }
 
 .adm_btn-peligro {
-    background-color: #c62828;
-    color: white;
+    border-radius: 5px;
+    background-color: var(--admBackgorund);
+    color: var(--admText);
+    box-shadow: none;
+    border: none;
+    padding: 0.3rem;
+    background-color: #ac282c;
+    color: rgb(243, 243, 243);
+
 }
+
 
 .adm_btn-peligro:hover {
     background-color: #b71c1c;
 }
+
+
+.adm_btn-exito {
+    border-radius: 5px;
+    background-color: var(--admBackgorund);
+    color: var(--admText);
+    box-shadow: none;
+    border: none;
+    padding: 0.3rem;
+    background-color: #39b964;
+    color: rgb(243, 243, 243);
+    padding: 0.6rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+
+
+/*  Botones de categoria filtrado   */
+
+.categoria_btn-filtro{
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 0.2rem;
+    font-size: 16px;
+    width: 100%;
+    
+}
+
+
+.categoria_btn-filtro:hover{
+
+    background-color: var(--colorDarkGray);
+    color: white;
+    font-weight: 600;
+    border-left: 4px solid #60a5fa;
+}
+
+
+
+
 
 /* ---------- MODAL ---------- */
 .modal_overlay {

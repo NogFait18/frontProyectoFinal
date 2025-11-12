@@ -1,10 +1,13 @@
 const btnAgregarPro = document.getElementById("btnAgregarPro") as HTMLButtonElement;
 const cardContainer = document.getElementById("card_containerPro") as HTMLElement | null;
 import type { IProductosMostrar } from "../../../types/IProductos";
-import { crearProducto, editarProductos, eliminarProducto, obtenerProductos } from "../../../utils/api";
+import { crearProducto, editarProductos, eliminarProducto, obtenerProductos, obtenerCategorias } from "../../../utils/api";
 
 const dataProductos = await obtenerProductos();
+const dataCategorias = await obtenerCategorias();
 
+
+// -------------- creacion de las tarjetas  de productos ------------------
 dataProductos.forEach((e: IProductosMostrar) => {
   const cardGroup = document.createElement("div");
   cardGroup.classList.add("producto_group");
@@ -36,6 +39,9 @@ dataProductos.forEach((e: IProductosMostrar) => {
   `;
 
   cardContainer?.appendChild(cardGroup);
+
+
+  // borrar un producto desde su boton
   document.addEventListener("click", async (e) => {
   const target = e.target as HTMLElement;
 
@@ -62,6 +68,8 @@ dataProductos.forEach((e: IProductosMostrar) => {
 
 });
 
+
+// MODAL para crear un objeto
 btnAgregarPro.addEventListener("click", () => {
   const overlay = document.createElement("div");
   overlay.classList.add("modal_overlay");
@@ -93,6 +101,11 @@ btnAgregarPro.addEventListener("click", () => {
         <option value="NODISPONIBLE">NODISPONIBLE</option>
       </select>
 
+      <label for="categoria">Categoria:</label>
+      <select name="categoria" id="categoria" class="form_input" required>
+        <option value="">Seleccionar categoria...</option>
+      </select>
+
       <button type="submit" class="form_button">Guardar</button>
     </form>
   `;
@@ -106,6 +119,27 @@ btnAgregarPro.addEventListener("click", () => {
     if (e.target === overlay) overlay.remove();
   });
 
+  // traer las categorias de la BBDD
+  // cargar las categorias en el select dentro del modal
+  const selectCategoria = modal.querySelector("#categoria") as HTMLElement;
+
+  try{
+    const categorias = dataCategorias;
+    categorias.forEach((cat:any)=> {
+      const option = document.createElement("option");
+      option.value = String(cat.id);
+      option.textContent = cat.nombre;
+      selectCategoria.appendChild(option);
+    });
+  } catch (err) {
+    console.error("Se produjo un error al cargar las categorias solicitadas: ", err);
+    
+  }
+
+
+
+
+  // enviar el formulario del nuevo producto
   const form = modal.querySelector("#formProducto") as HTMLFormElement;
   form.addEventListener("submit", async (e: SubmitEvent) => {
     e.preventDefault();
@@ -118,7 +152,14 @@ btnAgregarPro.addEventListener("click", () => {
       precio: Number(formData.get("precio")),
       stock: Number(formData.get("stock")),
       estado: formData.get("estado"),
+      // Ojo aca puede ir esta linea completa, depende lo que reciba el backend
+      // si solo mandamos el numero es la de abajo, si recibe un objeto con un numero es la de arriba...
+      // categoria: { id: Number(formData.get("categoria")) } 
+      categoria: Number(formData.get("categoria")),
+      
     };
+
+    
 
     try {
       await crearProducto(data);
