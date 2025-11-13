@@ -30,6 +30,18 @@ export const mostrarUsuarios = async () => {
   return data;
 };
 
+export const traerUsuarioPorId = async (id:Number) => {
+  const response = await fetch(`${API_URL}/usuario/${id}`, { method: "GET" });
+  
+  if (!response.ok) {
+    throw new Error(`Error HTTP: ${response.status}`);
+  }
+
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
 
 
 
@@ -247,3 +259,35 @@ export const eliminarProducto = async (id: number) => {
   return result;
 
 }
+
+//CRUD para Pedidos
+
+//Metodo GET
+export const mostrarPedidos = async () => {
+  const response = await fetch(`${API_URL}/pedidos`, { method: "GET" });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  const result = await response.json();
+  console.log("Pedidos encontrados con éxito");
+  return result;
+};
+
+//Metodo GET para mostrar pedidos por estado
+export const mostrarPedidosPorEstado = async (estado: string) => {
+  const url = `${API_URL}/pedidos/estado?estado=${estado}`;
+
+  const response = await fetch(url, { method: "GET" });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  const result = await response.json();
+  console.log(`Pedidos (${estado}) encontrados con éxito`);
+  return result;
+};

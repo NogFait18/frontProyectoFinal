@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../style.css">
-    <title>🍔Productos</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Pedidos</title>
 </head>
-
 <body>
     <header class="headerAdm">
         <div class="headerAdm_div">
@@ -31,25 +29,30 @@
                 <nav class="panel">
                 <section class="panelControl"> <a href="../adminHome/adminHome.html">📊DashBoard</a></section>
                 <section class="panelControl"> <a href="../categories/categories.html">📂Categorias</a></section>
-                <section class="panelControl">🍔Productos</section>
-                <section class="panelControl"><a href="../orders/orders.html">📦Pedidos</a></section>
+                <section class="panelControl"><a href="../products/productos.html">🍔Productos</a></section>
+                <section class="panelControl">📦Pedidos</section>
                 <section class="panelControl">🏪Ver Tienda</section>
                 </nav>
             </aside>
             <div class="adm_categorias-container">
                 <div class="adm_titulo">
-                    <h1>Productos</h1>
-                    <button class="adm_btn-exito" id="btnAgregarPro">+ Agregar Productos</button>
+                    <h1>Gestión de Pedidos</h1>
+                    <select id="filtroPedidos">
+                        <option value="TODOS">Todos los pedidos</option>
+                        <option value="PENDIENTE">Pendientes</option>
+                        <option value="CONFIRMADO">Confirmados</option>
+                        <option value="CANCELADO">Cancelados</option>
+                        <option value="TERMINADO">Terminados</option>
+                    </select>
+
                 </div>
                 <!-- modelo a reutilizar en categorias y productos, esto no va despues -->
-                <section class="card_container" id="card_containerPro">
+                <section class="card_containerPed" id="card_containerPed">
 
                 </section>
             </div>
         </div>
     </main>
-
 </body>
-<script type="module" src="./productos.ts"></script>
-
+<script type="module" src="./orders.js"></script>
 </html>
