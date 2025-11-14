@@ -1,4 +1,5 @@
 import type { ICategoria } from "../types/ICategoria";
+import type { IProductoCrear } from "../types/IProductos";
 import type { IUser, IUserLogin } from "../types/IUser";
 
 // importacion de la URL para no repetir codigo, desde .ENV
@@ -178,7 +179,7 @@ export const eliminarCategoria = async (id: number) => {
 
 //POST para productos
 
-export const crearProducto = async(data:ICategoria)=>{
+export const crearProducto = async(data:IProductoCrear)=>{
   const response = await fetch(`${API_URL}/productos`, {
     method: "POST",
     headers: {
