@@ -1,6 +1,6 @@
 const btnAgregarPro = document.getElementById("btnAgregarPro") as HTMLButtonElement;
 const cardContainer = document.getElementById("card_containerPro") as HTMLElement | null;
-import type { IProductosMostrar } from "../../../types/IProductos";
+import type { IProductoCrear, IProductosMostrar } from "../../../types/IProductos";
 import { crearProducto, editarProductos, eliminarProducto, obtenerProductos, obtenerCategorias } from "../../../utils/api";
 
 const dataProductos = await obtenerProductos();
@@ -155,7 +155,7 @@ btnAgregarPro.addEventListener("click", () => {
       // Ojo aca puede ir esta linea completa, depende lo que reciba el backend
       // si solo mandamos el numero es la de abajo, si recibe un objeto con un numero es la de arriba...
       // categoria: { id: Number(formData.get("categoria")) } 
-      categoria: Number(formData.get("categoria")),
+      idCategoria: Number(formData.get("categoria")),
       
     };
 

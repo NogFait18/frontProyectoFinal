@@ -1,3 +1,5 @@
+import type { ICategoriaMostrar } from "./ICategoria";
+
 //Opcion para ocupar el ENUM
 export type Estado = 'DISPONIBLE'|'NODISPONIBLE';
 
@@ -9,6 +11,14 @@ export interface IProductos{
     stock:Number
     estado: Estado
 }
+export interface IProductoCrear{
+    nombre:String
+    descripcion:String
+    imagen:String
+    precio:Number
+    stock:Number
+    idCategoria:Number
+}
 
 
 export interface IProductosMostrar{
@@ -19,5 +29,6 @@ export interface IProductosMostrar{
     precio:Number
     stock:Number
     estado: Estado
+    idCategoria: Number
 }
 
