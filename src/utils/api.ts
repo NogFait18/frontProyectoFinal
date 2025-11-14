@@ -292,3 +292,18 @@ export const mostrarPedidosPorEstado = async (estado: string) => {
   console.log(`Pedidos (${estado}) encontrados con éxito`);
   return result;
 };
+
+//Metodo PATCH para cambiar estado del pedido
+export const cambiarEstadoPedido = async (id: number, estado: string) => {
+  const response = await fetch(`${API_URL}/pedidos/${id}/estado?estado=${estado}`, {
+    method: "PATCH",
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  return await response.json();
+};
+

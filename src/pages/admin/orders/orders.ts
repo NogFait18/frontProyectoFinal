@@ -1,9 +1,22 @@
-import { mostrarPedidos, mostrarPedidosPorEstado, traerUsuarioPorId } from "../../../utils/api";
+import { cambiarEstadoPedido, mostrarPedidos, mostrarPedidosPorEstado, traerUsuarioPorId } from "../../../utils/api";
 
+// =====================
+// ELEMENTOS DEL DOM
+// =====================
 const pedidos = document.getElementById("card_containerPed");
 const filtroSelect = document.getElementById("filtroPedidos") as HTMLSelectElement;
 
-// Función para renderizar pedidos o mostrar un mensaje si no hay resultados
+const modal = document.getElementById("modalEditar")!;
+const pedidoIdLabel = document.getElementById("modal-pedido-id")!;
+const selectEstado = document.getElementById("select-estado") as HTMLSelectElement;
+const btnCerrar = document.getElementById("cerrar-modal")!;
+const btnGuardar = document.getElementById("guardar-estado")!;
+
+// =====================
+// FUNCIONES
+// =====================
+
+// Renderizar pedidos
 async function renderizarPedidos(pedidosMostrar: any[]) {
   pedidos!.innerHTML = ""; // Limpia el contenedor
 
@@ -16,35 +29,43 @@ async function renderizarPedidos(pedidosMostrar: any[]) {
     return;
   }
 
+  // Crear cada card
   for (const p of pedidosMostrar) {
-  const usuario = await traerUsuarioPorId(p.idCliente || p.id);
+    const usuario = await traerUsuarioPorId(p.idCliente || p.id);
 
-  const div = document.createElement("div");
-  div.classList.add("pedido-card");
+    const div = document.createElement("div");
+    div.classList.add("pedido-card", `pedido-${p.estado.toLowerCase()}`);
 
-  // clase según estado
-  div.classList.add(`pedido-${p.estado.toLowerCase()}`); 
+    div.innerHTML = `
+      <div class="pedido-header">
+        <h4>Pedido #${p.id}</h4>
+        <span class="estado">${p.estado}</span>
+      </div>
+      <div class="pedido-body">
+        <p><strong>Cliente:</strong> ${usuario.nombre} ${usuario.apellido}</p>
+        <p><strong>Fecha:</strong> ${p.fecha}</p>
+        <p><strong>Productos:</strong> ${p.detalles.length}</p>
+        <p><strong>Total:</strong> $${p.total}</p>
+        <button class="editar-btn">Editar</button>
+      </div>
+    `;
 
-  div.innerHTML = `
-    <div class="pedido-header">
-      <h4>Pedido #${p.id}</h4>
-      <span class="estado">${p.estado}</span>
-    </div>
-    <div class="pedido-body">
-      <p><strong>Cliente:</strong> ${usuario.nombre} ${usuario.apellido}</p>
-      <p><strong>Fecha:</strong> ${p.fecha}</p>
-      <p><strong>Productos:</strong> ${p.detalles.length}</p>
-      <p><strong>Total:</strong> $${p.total}</p>
-    </div>
-  `;
-  pedidos?.appendChild(div);
-}
+    pedidos?.appendChild(div);
+  }
 
+  // ➤ Ahora que los botones existen, asignamos eventos
+  const editarBtns = document.querySelectorAll(".editar-btn");
+  editarBtns.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      abrirModal(pedidosMostrar[index]);
+    });
+  });
 }
 
 // Cargar todos los pedidos
 async function cargarPedidos() {
   pedidos!.innerHTML = "<p>Cargando pedidos...</p>";
+
   try {
     const pedidosMostrar = await mostrarPedidos();
     await renderizarPedidos(pedidosMostrar);
@@ -53,9 +74,10 @@ async function cargarPedidos() {
   }
 }
 
-// Cargar pedidos filtrados por estado
+// Cargar pedidos según estado
 async function cargarPedidosPorEstado(estado: string) {
   pedidos!.innerHTML = "<p>Cargando pedidos...</p>";
+
   try {
     if (estado === "TODOS") {
       await cargarPedidos();
@@ -69,11 +91,44 @@ async function cargarPedidosPorEstado(estado: string) {
   }
 }
 
-// Evento del select
-filtroSelect?.addEventListener("change", () => {
-  const estado = filtroSelect.value;
-  cargarPedidosPorEstado(estado);
+// Abrir modal
+function abrirModal(pedido: any) {
+  pedidoIdLabel.textContent = `Pedido #${pedido.id}`;
+  selectEstado.value = pedido.estado;
+  modal.dataset.pedidoId = pedido.id;
+  modal.classList.remove("hidden");
+}
+
+// =====================
+// EVENTOS DEL MODAL
+// =====================
+
+btnCerrar.addEventListener("click", () => {
+  modal.classList.add("hidden");
 });
 
-// Carga inicial
+btnGuardar.addEventListener("click", async () => {
+  const id = Number(modal.dataset.pedidoId);
+  const nuevoEstado = selectEstado.value;
+
+  try {
+    await cambiarEstadoPedido(id, nuevoEstado);
+    modal.classList.add("hidden");
+    cargarPedidos(); // refrescar
+  } catch (error) {
+    console.error("Error al cambiar estado:", error);
+    alert("No se pudo actualizar el estado.");
+  }
+});
+
+// =====================
+// EVENTO DEL FILTRO
+// =====================
+filtroSelect?.addEventListener("change", () => {
+  cargarPedidosPorEstado(filtroSelect.value);
+});
+
+// =====================
+// CARGA INICIAL
+// =====================
 cargarPedidos();
