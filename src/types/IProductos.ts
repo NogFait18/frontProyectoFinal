@@ -1,4 +1,3 @@
-import type { ICategoriaMostrar } from "./ICategoria";
 
 //Opcion para ocupar el ENUM
 export type Estado = 'DISPONIBLE'|'NODISPONIBLE';
