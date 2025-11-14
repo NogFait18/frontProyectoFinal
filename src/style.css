@@ -986,3 +986,308 @@ select {
     color: #777;
     margin-top: 2rem;
 }
+
+/* productDetail */
+/* --- INICIO: Estilos para Product Detail --- */
+/* Pega esto al final de tu style.css */
+
+.product-detail-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco para el contenido */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.back-link-container {
+    margin-bottom: 20px;
+}
+.back-link {
+    text-decoration: none;
+    color: var(--primary); /* Usamos tu color primario */
+    font-weight: 500;
+}
+
+/* La clave: Flexbox para poner la imagen al lado de la info */
+.product-content {
+    display: flex;
+    gap: 30px; /* Espacio entre columnas */
+}
+
+/* Columna de la imagen */
+.product-image-gallery {
+    flex: 1; /* Ocupa 1 parte */
+}
+.product-image-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--textOpac, #ddd); /* Borde suave */
+}
+
+/* Columna de la información */
+.product-info {
+    flex: 1.2; /* Ocupa 1.2 partes (un poco más grande) */
+    
+}
+
+#product-name {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text, #140807);
+}
+
+.product-status {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: white;
+}
+.product-status.available {
+    background-color: var(--accent, #abd078); /* Usamos tu color 'accent' */
+}
+.product-status.unavailable {
+    background-color: var(--primary, #bf4c49); /* Usamos tu color 'primary' */
+}
+
+.product-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary, #bf4c49);
+    margin-bottom: 15px;
+}
+
+.product-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--textOpac, #333);
+}
+
+.product-stock {
+    font-size: 0.9rem;
+    color: var(--text, #140807);
+    margin-top: 10px;
+}
+
+/* Controles (cantidad y botón) */
+.product-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.quantity-selector {
+    display: flex;
+    flex-direction: column;
+}
+.quantity-selector label {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    color: var(--textOpac, #333);
+}
+.quantity-selector input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid var(--textOpac, #ccc);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Botón principal */
+.btn.btn-primary {
+    background-color: var(--primary, #bf4c49);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn.btn-primary:hover {
+    opacity: 0.8;
+}
+.btn.btn-primary:disabled {
+    background-color: #b2bec3;
+    cursor: not-allowed;
+}
+
+/* Mensaje de confirmación */
+.alert.alert-success {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #abd07830; /* Tono de tu 'accent' con transparencia */
+    border: 1px solid var(--accent, #abd078);
+    color: var(--text, #140807);
+    border-radius: 4px;
+}
+
+/* --- FIN: Estilos para Product Detail --- */
+
+/* --- INICIO: Estilos para Carrito --- */
+/* Pega esto al final de tu style.css */
+
+.cart-page-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.cart-page-container h1 {
+    font-size: 2.2rem;
+    color: var(--text, #140807);
+    margin-bottom: 20px;
+}
+
+/* Layout de 2 columnas */
+.cart-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Columna de items */
+.cart-items-container {
+    flex: 2.5; /* Más grande */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Columna de resumen */
+.cart-summary {
+    flex: 1; /* Más pequeña */
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Se queda fija al hacer scroll */
+    top: 20px;
+}
+
+/* Estilo para cada item en el carrito */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.cart-item-info {
+    flex-grow: 1;
+}
+.cart-item-title {
+    font-size: 1.1rem;
+    color: var(--text, #140807);
+    margin: 0;
+}
+.cart-item-price {
+    font-size: 0.9rem;
+    color: var(--textOpac, #333);
+    margin: 5px 0 0;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+}
+.cart-item-controls .quantity-btn {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+.cart-item-controls .quantity-input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    height: 30px;
+}
+
+.cart-item-total {
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: right;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary, #bf4c49);
+    cursor: pointer;
+}
+
+/* Estilos del resumen */
+.cart-summary h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+.summary-row.total {
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+.cart-summary .btn {
+    width: 100%;
+    margin-top: 10px;
+}
+.btn.btn-secondary {
+    background-color: #eee;
+    color: var(--text, #140807);
+    border: 1px solid #ccc;
+}
+
+/* Carrito vacío */
+.cart-empty {
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.cart-empty p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Estilos del Modal (reutiliza los de tu CSS) */
+/* .modal-overlay, .modal_content, .modal_close, .form_input... */
+/* Solo añadimos lo específico del checkout */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.checkout-form label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: -5px;
+}
+
+/* --- FIN: Estilos para Carrito --- */

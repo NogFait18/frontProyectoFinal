@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../../../style.css">
+    <title>Detalle del Producto</title>
+</head>
+<body>
+    <header class="headerAdm">
+        <div class="headerAdm_div">
+            <h2 class="h2_admin">🍕Food Store</h2>
+        </div>
+        <nav class="header_nav">
+            <ul class="nav_ul">
+                <li><a href="">Tienda</a></li>
+                <li><a href="../adminHome/adminHome.html">Panel Admin</a></li>
+                <!-- Aca cambiar despues porque tiene que traer el nombre de usuario -->
+                <li><a href="">Jhonny Cojo</a></li>
+                <li><button>Cerrar Sesión</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-detail-container">
+      <div class="back-link-container">
+        <a href="../home/home.html" class="back-link">&larr; Volver al catálogo</a>
+      </div>
+
+      <section class="product-content">
+        
+        <div class="product-image-gallery">
+          <img src="" alt="Imagen del producto" id="product-image">
+        </div>
+
+        <div class="product-info">
+          <h1 id="product-name"></h1> <p class="product-status" id="product-status"></p> <p class="product-price" id="product-price"></p> <hr>
+
+          <p class="product-description" id="product-description"></p> <p class="product-stock" id="product-stock"></p> <div class="product-controls">
+            <div class="quantity-selector">
+              <label for="quantity-input">Cantidad:</label>
+              <input type="number" id="quantity-input" value="1" min="1">
+            </div>
+            
+            <button id="add-to-cart-btn" class="btn btn-primary">Agregar al Carrito</button>
+          </div>
+
+          <div id="confirmation-message" class="alert alert-success" style="display: none;">
+            ¡Producto agregado al carrito!
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./productDetail.ts"></script>
+</body>
+</html>
