@@ -211,9 +211,11 @@ export const obtenerProductos = async () =>{
     const res = await fetch(`${API_URL}/productos`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const datos = await res.json();
+    // debug
+    console.log("DEBUG productos backend: ", datos);
     return datos;
   } catch (err) {
-    console.error('Error al obtener las categorias mediante el fetch: ', err);
+    console.error('Error al obtener los productos mediante el fetch: ', err);
     throw err;
   }
 }
