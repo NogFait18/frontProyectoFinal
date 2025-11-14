@@ -883,7 +883,7 @@ select {
     text-align: center;
 }
 
-/* Tarjeta base */
+/* Tarjeta base de pedido*/
 .pedido-card {
     background-color: #fff;
     border-radius: 14px;
@@ -929,7 +929,7 @@ select {
     color: white;
 }
 
-/* Cuerpo de la tarjeta */
+/* Cuerpo de la tarjeta de pedido */
 .pedido-body {
     margin-top: 0.8rem;
     display: flex;
