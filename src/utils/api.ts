@@ -292,3 +292,35 @@ export const mostrarPedidosPorEstado = async (estado: string) => {
   console.log(`Pedidos (${estado}) encontrados con éxito`);
   return result;
 };
+
+//CRUD para Pedidos desde Cliente
+
+//Metodo GET: traer los pedidos de un cliente
+
+export const mostrarPedidosCliente = async (email: string) => {
+  const response = await fetch(`${API_URL}/usuario/traerPedidos/${email}`);
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  return await response.json();
+};
+
+//Metodo GET para mostrar pedidos por estado
+export const mostrarPedidosPorEstadoCliente = async (email:string, estado: string) => {
+  const url = `${API_URL}/usuario/traerPedidos/${email}/${estado}`;
+
+  const response = await fetch(url, { method: "GET" });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  const result = await response.json();
+  console.log(`Pedidos (${estado}) encontrados con éxito`);
+  return result;
+};
+
