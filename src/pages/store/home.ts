@@ -7,7 +7,7 @@ import type { IProductosMostrar } from "../../types/IProductos";
 // ------------------- lista de categorias para mostrar nombre al renderizar las tarjetas -------------------
 // esto lo necesitamos porque el backend solo devuelve un id de categoria y
 //  con esto buscamos las categorias y podemos obtener el nombre
-let categoriasGlobal: ICategoriaMostrar[] = [];
+// let categoriasGlobal: ICategoriaMostrar[] = [];
 
 // ------------------- SELECTORES -------------------
 const categoriaPanel = document.getElementById("categoriasPanel") as HTMLElement | null;
@@ -23,7 +23,7 @@ const cargarCategorias = async (): Promise<void> => {
     try{
         const categorias = await obtenerCategorias();
         //guardamos las categorias en el array de categorias para despeus acarle el nombre
-        categoriasGlobal = categorias;
+        // categoriasGlobal = categorias;
         if (!categoriaPanel) return;
         categoriaPanel.innerHTML = `
         <section class="panelControl">
