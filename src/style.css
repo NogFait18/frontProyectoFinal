@@ -1403,3 +1403,110 @@ CONTENIDO DEL MODAL
     transform: scale(0.97);
 }
 
+
+
+
+/*---------incio: HOME CLIENTE --------- seba*/
+
+/* Contenedor general */
+.card_container-productos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Tarjeta del home productos */
+.home_card-producto {
+    width: 260px;
+    height: 360px;
+    background: var(--background);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    transition: transform .2s ease;
+    color: var(--text);
+}
+
+.home_card-producto:hover {
+    transform: translateY(-4px);
+}
+/* Imagen del home productos */
+.home_product-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Contenedor de la descripción */
+.home_prod-card {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Título "Producto" */
+.home_prod-card h4 {
+    font-size: 0.8rem;
+    font-weight: bold;
+    opacity: 0.7;
+    margin: 0;
+}
+
+* Nombre del producto */
+.home_prod-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text);
+}
+
+/* Descripción */
+.home_prod-card p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--textOpac);
+}
+
+/* Precio + Estado */
+.home_producto-precio {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Precio (naranja → usamos --primary porque es tu color destacado) */
+.home_precio {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+/* Estado */
+.estado {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Disponible (verde → usamos --accent para integrarlo a tu paleta) */
+.estado.disponible {
+    background-color: var(--accent);
+    color: #0f3d0f;
+}
+
+/* No disponible (rojo basado en --primary pero más claro) */
+.estado.nodisponible {
+    background-color: #f1b4b2;
+    color: #6b1c1a;
+}
+
+
+/*---------fin HOME CLIENTE --------- seba*/
