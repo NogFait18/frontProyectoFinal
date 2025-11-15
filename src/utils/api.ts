@@ -227,7 +227,7 @@ export const editarProductos = async (id: number, data: any) => {
   const estadoValido = data.estado === "activo" ? "DISPONIBLE" : "NODISPONIBLE";
 
   const response = await fetch(`${API_URL}/productos/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       ...data,
@@ -271,7 +271,12 @@ export const obtenerProductosPorCategoria = async (idCategoria: number) => {
     return res.json();
 };
 
-
+// obtener producto por id 
+export const obtenerProductoPorId = async (id: number) => {
+    const res = await fetch(`${API_URL}/productos/${id}`);
+    if (!res.ok) throw new Error("Error al obtener el producto por ID");
+    return res.json();
+};
 
 //CRUD para Pedidos
 

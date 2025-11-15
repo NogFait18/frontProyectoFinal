@@ -170,6 +170,9 @@ label {
     color: white;
     font-weight: bolder;
 }
+.nav_ul button{
+    cursor: pointer;
+}
 
 .adm {
     display: flex;
@@ -201,6 +204,7 @@ label {
     flex-direction: column;
     gap: 15px;
     min-width: 15rem;
+    min-height: 12rem;
     align-items: center;
     color: white;
     padding: 2rem;
@@ -279,6 +283,7 @@ label {
 .panelControl {
     margin: 0.2rem 0;
     width: 100%;
+    
 }
 
 .panelControl a {
@@ -1102,7 +1107,7 @@ select {
 
 /* Botón principal */
 .btn.btn-primary {
-    background-color: var(--primary, #bf4c49);
+    background-color:  #57bf49;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -1507,12 +1512,17 @@ CONTENIDO DEL MODAL
 
 /* --- Botón de Peligro --- */
 .btn.btn-danger {
-  background-color: var(--danger, #d63031);
-  color: white;
-  border: none;
+    background-color: var(--primary, #bf4c49);
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    border: none;
+    color: white;
 }
 
 .btn.btn-danger:hover {
+    cursor: pointer;
   opacity: 0.8;
   background-color: var(--danger, #d63031);
 }
