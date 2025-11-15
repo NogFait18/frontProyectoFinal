@@ -2,7 +2,7 @@ import { mostrarPedidosCliente, mostrarPedidos, mostrarPedidosPorEstadoCliente, 
 import { obtenerCategorias } from "../../../utils/api";
 import type { ICategoriaMostrar } from "../../../types/ICategoria";
 
-
+ 
 
 //Logica del sidebar de categorias
 
@@ -184,7 +184,7 @@ function abrirModalConPedido(pedido: any){
         </div>
         `;
 
-  modal.classList.remove("oculto");
+  modal.classList.remove("hidden");
 
 }
 
@@ -199,5 +199,5 @@ cargarPedidos();
 // Evento para cerrar el modal de pedido
 
 document.getElementById("cerrarModal")?.addEventListener("click", () => {
-  document.getElementById("modalPedido")?.classList.add("oculto");
+  document.getElementById("modalPedido")?.classList.add("hidden");
 });
