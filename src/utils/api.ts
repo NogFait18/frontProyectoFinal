@@ -227,7 +227,7 @@ export const editarProductos = async (id: number, data: any) => {
   const estadoValido = data.estado === "activo" ? "DISPONIBLE" : "NODISPONIBLE";
 
   const response = await fetch(`${API_URL}/productos/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       ...data,

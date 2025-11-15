@@ -15,11 +15,11 @@
         </div>
         <nav class="header_nav">
             <ul class="nav_ul">
-                <li><a href="">Tienda</a></li>
-                <li><a href="../adminHome/adminHome.html">Panel Admin</a></li>
                 <!-- Aca cambiar despues porque tiene que traer el nombre de usuario -->
-                <li>Juan Perez</li>
-                <li><button>Cerrar Sesión</button></li>
+                <li id="user-name">Invitado</li>
+
+                <!-- Botón de cerrar sesión -->
+                <li><button id="btn-logout">Cerrar Sesión</button></li>
             </ul>
         </nav>
     </header>
@@ -48,7 +48,14 @@
             </div>
         </div>
     </main>
+    <script type="module">
+    import { cargarHeaderUsuario, cerrarSesion } from "/src/utils/authHeader.ts";
 
+    cargarHeaderUsuario();
+
+    const btnCerrar = document.getElementById("btn-logout");
+    if (btnCerrar) btnCerrar.addEventListener("click", cerrarSesion);
+    </script>
 </body>
 <script type="module" src="./categories.ts"></script>
 

@@ -201,6 +201,7 @@ label {
     flex-direction: column;
     gap: 15px;
     min-width: 15rem;
+    min-height: 12rem;
     align-items: center;
     color: white;
     padding: 2rem;
@@ -279,6 +280,7 @@ label {
 .panelControl {
     margin: 0.2rem 0;
     width: 100%;
+    
 }
 
 .panelControl a {
@@ -1526,4 +1528,8 @@ CONTENIDO DEL MODAL
     cursor: pointer;
   opacity: 0.8;
   background-color: var(--danger, #d63031); /* Mantenemos el color en hover */
+}
+
+#btn-logout:hover{
+    cursor: pointer;
 }

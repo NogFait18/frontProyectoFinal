@@ -13,11 +13,11 @@
         </div>
         <nav class="header_nav">
             <ul class="nav_ul">
-                <li><a href="">Tienda</a></li>
-                <li><a href="">Panel Admin</a></li>
                 <!-- Aca cambiar despues porque tiene que traer el nombre de usuario -->
-                <li>Juan Perez</li>
-                <li><button>Cerrar Sesión</button></li>
+                <li id="user-name">Invitado</li>
+
+                <!-- Botón de cerrar sesión -->
+                <li><button id="btn-logout">Cerrar Sesión</button></li>
             </ul>
         </nav>
     </header>
@@ -31,7 +31,7 @@
                 <section class="panelControl"><a href="../categories/categories.html">📂Categorias</a></section>
                 <section class="panelControl"> <a href="../products/productos.html">🍔Productos</a></section>
                 <section class="panelControl"><a href="../orders/orders.html">📦Pedidos</a></section>
-                <section class="panelControl">🏪Ver Tienda</section>
+                <section class="panelControl"><a href="/src/pages/store/home.html">🏪Ver Tienda</a></section>
                 </nav>
             </aside>
             <div class="adm_panelAdm">
@@ -61,13 +61,20 @@
                     </section>
                     <section class="tarjetaAdm">
                         <h3>✅Disponible</h3>
-                        <p>0</p>
-                        <button>Gestionar</button>
+                        <p id="productosConStock">0</p>
                     </section>
                 </div>
             </div>
         </div>
     </main>
+    <script type="module">
+    import { cargarHeaderUsuario, cerrarSesion } from "/src/utils/authHeader.ts";
+
+    cargarHeaderUsuario();
+
+    const btnCerrar = document.getElementById("btn-logout");
+    if (btnCerrar) btnCerrar.addEventListener("click", cerrarSesion);
+    </script>
 </body>
 <script type="module" src="./adminHome.ts"></script>
 </html>

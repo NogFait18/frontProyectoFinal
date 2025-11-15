@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet" href="../../../style.css">
     <title>Detalle del Producto</title>
 </head>
 <body>
@@ -13,11 +13,11 @@
         </div>
         <nav class="header_nav">
             <ul class="nav_ul">
-                <li><a href="../home.html">Tienda</a></li>
-                <li><a href="../adminHome/adminHome.html">Panel Admin</a></li>
                 <!-- Aca cambiar despues porque tiene que traer el nombre de usuario -->
-                <li><a href="">Jhonny Cojo</a></li>
-                <li><button>Cerrar Sesión</button></li>
+                <li id="user-name">Invitado</li>
+
+                <!-- Botón de cerrar sesión -->
+                <li><button id="btn-logout">Cerrar Sesión</button></li>
             </ul>
         </nav>
     </header>
@@ -52,5 +52,13 @@
       </section>
     </main>
     <script type="module" src="./productDetail.ts"></script>
+    <script type="module">
+    import { cargarHeaderUsuario, cerrarSesion } from "/src/utils/authHeader.ts";
+
+    cargarHeaderUsuario();
+
+    const btnCerrar = document.getElementById("btn-logout");
+    if (btnCerrar) btnCerrar.addEventListener("click", cerrarSesion);
+    </script>
 </body>
 </html>
