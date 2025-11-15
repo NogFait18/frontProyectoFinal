@@ -132,7 +132,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Mostramos un error en la página
     const container = document.querySelector('.product-detail-container');
     if (container) {
-      container.innerHTML = `<h1>Error al cargar el producto.</h1><p>${error.message}</p>`;
+      container.innerHTML = `<h1>Error al cargar el producto.</h1><p></p>`, error;
+      ;
     }
   }
 });
