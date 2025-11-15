@@ -170,6 +170,9 @@ label {
     color: white;
     font-weight: bolder;
 }
+.nav_ul button{
+    cursor: pointer;
+}
 
 .adm {
     display: flex;
