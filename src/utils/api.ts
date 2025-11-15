@@ -263,6 +263,16 @@ export const eliminarProducto = async (id: number) => {
 
 }
 
+// traer productos filtrados por categoria GET
+
+export const obtenerProductosPorCategoria = async (idCategoria: number) => {
+    const res = await fetch(`${API_URL}/productos/categoria/${idCategoria}`);
+    if (!res.ok) throw new Error("Error al obtener productos por categoría");
+    return res.json();
+};
+
+
+
 //CRUD para Pedidos
 
 //Metodo GET
