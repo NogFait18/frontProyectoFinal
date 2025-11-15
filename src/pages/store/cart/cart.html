@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+
+    <div class="cart-page-container">
+        <h1>Mi Carrito de Compras</h1>
+
+        <div class="cart-layout">
+
+            <div class="cart-items-container" id="cart-items-list">
+                <div class="cart-empty hidden" id="cart-empty-message">
+                    <p>Tu carrito está vacío.</p>
+                    <a href="/" class="btn btn-primary">Volver a la tienda</a>
+                </div>
+            </div>
+
+            <aside class="cart-summary" id="cart-summary-box">
+                <h3>Resumen del Pedido</h3>
+                
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal">$0.00</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>Costo de Envío</span>
+                    <span id="summary-shipping">$500.00</span>
+                </div>
+                
+                <hr>
+
+                <div class="summary-row total">
+                    <strong>Total</strong>
+                    <strong id="summary-total">$500.00</strong>
+                </div>
+
+                <button class="btn btn-primary" id="btn-proceed-checkout">Proceder al Pago</button>
+                <button class="btn btn-danger" id="btn-empty-cart">Vaciar Carrito</button>
+            </aside>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="checkout-modal">
+        <div class="modal-content">
+            <h2 class="form_h2">Completar Pedido</h2>
+            <form class="checkout-form" id="checkout-form">
+                
+                <label for="checkout-phone">Teléfono (requerido)</label>
+                <input type="tel" id="checkout-phone" class="form_input" required>
+                
+                <label for="checkout-address">Dirección de Entrega (requerida)</label>
+                <input type="text" id="checkout-address" class="form_input" required>
+                
+                <label for="checkout-payment">Método de Pago</label>
+                <select id="checkout-payment" class="form_input">
+                    <option value="efectivo">Efectivo</option>
+                    <option value="tarjeta">Tarjeta</option>
+                    <option value="transferencia">Transferencia</option>
+                </select>
+
+                <label for="checkout-notes">Notas adicionales (opcional)</label>
+                <textarea id="checkout-notes" class="form_input" rows="3"></textarea>
+                
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-checkout">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="confirm-empty-modal">
+        <div class="modal-content">
+            <h3>Confirmar</h3>
+            <p>¿Estás seguro de que deseas vaciar tu carrito de compras?</p>
+            <div class="modal-buttons">
+                <button id="btn-cancel-empty" class="btn btn-secondary">Cancelar</button>
+                <button id="btn-confirm-empty" class="btn btn-primary" style="background-color: var(--primary);">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 2000;"></div>
+
+    <script src="cart.ts" type="module"></script>
+</body>
+</html>

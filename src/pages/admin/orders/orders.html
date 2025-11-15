@@ -44,6 +44,26 @@
                         <option value="CANCELADO">Cancelados</option>
                         <option value="TERMINADO">Terminados</option>
                     </select>
+                    <div id="modalEditar" class="modal hidden">
+                        <div class="modal-content">
+                            <h3>Editar estado del pedido</h3>
+                    
+                            <h2 id="modal-pedido-id"></h2>
+                    
+                            <label for="select-estado">Nuevo estado:</label>
+                            <select id="select-estado">
+                                <option value="PENDIENTE">PENDIENTE</option>
+                                <option value="CONFIRMADO">CONFIRMADO</option>
+                                <option value="CANCELADO">CANCELADO</option>
+                                <option value="TERMINADO">TERMINADO</option>
+                            </select>
+                    
+                            <div class="modal-buttons">
+                                <button id="guardar-estado">Guardar</button>
+                                <button id="cerrar-modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- modelo a reutilizar en categorias y productos, esto no va despues -->
