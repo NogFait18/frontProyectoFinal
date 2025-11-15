@@ -1,6 +1,7 @@
 const btnAgregarPro = document.getElementById("btnAgregarPro") as HTMLButtonElement;
 const cardContainer = document.getElementById("card_containerPro") as HTMLElement | null;
-import type { IProductoCrear, IProductosMostrar } from "../../../types/IProductos";
+import type {  IProductosMostrar } from "../../../types/IProductos";
+
 import { crearProducto, editarProductos, eliminarProducto, obtenerProductos, obtenerCategorias } from "../../../utils/api";
 
 const dataProductos = await obtenerProductos();

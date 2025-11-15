@@ -227,7 +227,7 @@ export const editarProductos = async (id: number, data: any) => {
   const estadoValido = data.estado === "activo" ? "DISPONIBLE" : "NODISPONIBLE";
 
   const response = await fetch(`${API_URL}/productos/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       ...data,
@@ -263,6 +263,21 @@ export const eliminarProducto = async (id: number) => {
 
 }
 
+// traer productos filtrados por categoria GET
+
+export const obtenerProductosPorCategoria = async (idCategoria: number) => {
+    const res = await fetch(`${API_URL}/productos/categoria/${idCategoria}`);
+    if (!res.ok) throw new Error("Error al obtener productos por categoría");
+    return res.json();
+};
+
+// obtener producto por id 
+export const obtenerProductoPorId = async (id: number) => {
+    const res = await fetch(`${API_URL}/productos/${id}`);
+    if (!res.ok) throw new Error("Error al obtener el producto por ID");
+    return res.json();
+};
+
 //CRUD para Pedidos
 
 //Metodo GET
@@ -295,11 +310,12 @@ export const mostrarPedidosPorEstado = async (estado: string) => {
   return result;
 };
 
-//Metodo PATCH para cambiar estado del pedido
-export const cambiarEstadoPedido = async (id: number, estado: string) => {
-  const response = await fetch(`${API_URL}/pedidos/${id}/estado?estado=${estado}`, {
-    method: "PATCH",
-  });
+//CRUD para Pedidos desde Cliente
+
+//Metodo GET: traer los pedidos de un cliente
+
+export const mostrarPedidosCliente = async (email: string) => {
+  const response = await fetch(`${API_URL}/usuario/traerPedidos/${email}`);
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -307,5 +323,21 @@ export const cambiarEstadoPedido = async (id: number, estado: string) => {
   }
 
   return await response.json();
+};
+
+//Metodo GET para mostrar pedidos por estado
+export const mostrarPedidosPorEstadoCliente = async (email:string, estado: string) => {
+  const url = `${API_URL}/usuario/traerPedidos/${email}/${estado}`;
+
+  const response = await fetch(url, { method: "GET" });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  const result = await response.json();
+  console.log(`Pedidos (${estado}) encontrados con éxito`);
+  return result;
 };
 

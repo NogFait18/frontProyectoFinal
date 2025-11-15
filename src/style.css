@@ -170,6 +170,9 @@ label {
     color: white;
     font-weight: bolder;
 }
+.nav_ul button{
+    cursor: pointer;
+}
 
 .adm {
     display: flex;
@@ -201,6 +204,7 @@ label {
     flex-direction: column;
     gap: 15px;
     min-width: 15rem;
+    min-height: 12rem;
     align-items: center;
     color: white;
     padding: 2rem;
@@ -279,6 +283,7 @@ label {
 .panelControl {
     margin: 0.2rem 0;
     width: 100%;
+    
 }
 
 .panelControl a {
@@ -1102,7 +1107,7 @@ select {
 
 /* Botón principal */
 .btn.btn-primary {
-    background-color: var(--primary, #bf4c49);
+    background-color:  #57bf49;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -1381,6 +1386,7 @@ CONTENIDO DEL MODAL
 #cerrar-modal {
     background: #ddd;
 }
+
 .editar-btn {
     background: #00a868;
     margin: 10px;
@@ -1402,9 +1408,6 @@ CONTENIDO DEL MODAL
 .editar-btn:active {
     transform: scale(0.97);
 }
-
-
-
 
 /*---------incio: HOME CLIENTE --------- seba*/
 
@@ -1435,7 +1438,8 @@ CONTENIDO DEL MODAL
 .home_card-producto:hover {
     transform: translateY(-4px);
 }
-/* Imagen del home productos */
+
+/* Imagen */
 .home_product-img {
     width: 100%;
     height: 180px;
@@ -1451,7 +1455,7 @@ CONTENIDO DEL MODAL
     gap: 6px;
 }
 
-/* Título "Producto" */
+/* Título */
 .home_prod-card h4 {
     font-size: 0.8rem;
     font-weight: bold;
@@ -1459,7 +1463,7 @@ CONTENIDO DEL MODAL
     margin: 0;
 }
 
-* Nombre del producto */
+/* Nombre del producto */
 .home_prod-card h3 {
     font-size: 1.2rem;
     font-weight: 700;
@@ -1481,7 +1485,7 @@ CONTENIDO DEL MODAL
     justify-content: space-between;
     align-items: center;
 }
-/* Precio (naranja → usamos --primary porque es tu color destacado) */
+
 .home_precio {
     font-size: 1.1rem;
     font-weight: bold;
@@ -1496,29 +1500,80 @@ CONTENIDO DEL MODAL
     font-weight: bold;
 }
 
-/* Disponible (verde → usamos --accent para integrarlo a tu paleta) */
 .estado.disponible {
     background-color: var(--accent);
     color: #0f3d0f;
 }
 
-/* No disponible (rojo basado en --primary pero más claro) */
 .estado.nodisponible {
     background-color: #f1b4b2;
     color: #6b1c1a;
 }
 
-
-/*---------fin HOME CLIENTE --------- seba*/
-
-/* --- Botón de Peligro (Rojo) --- */
+/* --- Botón de Peligro --- */
 .btn.btn-danger {
-  background-color: var(--danger, #d63031);
-  color: white;
-  border: none;
+    background-color: var(--primary, #bf4c49);
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    border: none;
+    color: white;
 }
 
 .btn.btn-danger:hover {
+    cursor: pointer;
   opacity: 0.8;
-  background-color: var(--danger, #d63031); /* Mantenemos el color en hover */
+  background-color: var(--danger, #d63031);
 }
+
+/*===============================
+  TUS ESTILOS DEL STASH (SEPARADOS)
+===============================*/
+
+ /*   Estilos del Modal de Pedidos del Cliente     */
+.modal_contenido {
+  background: rgb(243, 232, 232);
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cerrar{
+    margin-left: 21rem;
+    cursor: pointer;
+    color: #333;
+    font-weight: 900;
+}
+
+.modal_body{
+    display: flex;
+    flex-direction: column;
+}
+
+.item-producto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.item-producto img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.detallePedido_total{
+    padding: 1rem;
+    margin: 1rem auto ;
+    border-top: 1px solid rgb(172, 168, 168);
+    font-size: 1.5rem;
+}
+/*     Fin Estilos del pedido de Cliente     */
