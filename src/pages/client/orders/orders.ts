@@ -1,47 +1,27 @@
 import { mostrarPedidosCliente, mostrarPedidos, mostrarPedidosPorEstadoCliente, traerUsuarioPorId } from "../../../utils/api";
-import { obtenerCategorias } from "../../../utils/api";
-import type { ICategoriaMostrar } from "../../../types/ICategoria";
+import {  mostrarPedidoPorId } from "../../../utils/api";
 
- 
 
 //Logica del sidebar de categorias
 
 // ------------------- SELECTORES -------------------
 const categoriaPanel = document.getElementById("categoriasPanel") as HTMLElement | null;
 
+const nombreCliente = document.getElementById("user-name") as HTMLElement | null;
 
 // ------------------- LOGICA -------------------
 
-const cargarCategorias = async (): Promise<void> => {
-
-    try{
-        const categorias = await obtenerCategorias();
-        if (!categoriaPanel) return;
-        categoriaPanel.innerHTML = `
-        <section class="panelControl">
-        <button class="categoria_btn-filtro" id="btnVerTodo">🍽️ Ver todo</button>
-        </section>`;
-
-        categorias.forEach((cat: ICategoriaMostrar) => {
-            const sectionNuevaCat = document.createElement("section");
-            sectionNuevaCat.classList.add("panelControl");
-
-            sectionNuevaCat.innerHTML= `
-        <button class="categoria_btn-filtro" data-id="${cat.id}">
-        ${cat.nombre}
-        </button>`;
-
-        categoriaPanel.appendChild(sectionNuevaCat);
-        })
 
 
-    } catch (err) {
-        console.error("Se produjo un error al listar las categorias: ", err);
-        
-    }
-};
+// traer un usuario para renderiizar el nombre
 
-cargarCategorias();
+const nombreUsuario = localStorage.getItem("usuario");
+
+if (nombreCliente && nombreUsuario) {
+  const usuario = JSON.parse(nombreUsuario);
+  const nombreCompleto = `${usuario.nombre} ${usuario.apellido}`;
+  nombreCliente.textContent = nombreCompleto;
+}
 
 
 
@@ -65,21 +45,21 @@ async function renderizarPedidos(pedidosMostrar: any[]) {
     pedidos?.appendChild(sinPedidos);
     return;
   }
-console.log(pedidosMostrar)
+  console.log(pedidosMostrar)
   for (const p of pedidosMostrar) {
 
-  const div = document.createElement("div");
-  div.classList.add("pedido-card");
-
-  // clase según estado
-  div.classList.add(`pedido-${p.estado.toLowerCase()}`); 
+    const div = document.createElement("div");
+    div.classList.add("pedido-card");
+    // clase según estado
+    div.classList.add(`pedido-${p.estado.toLowerCase()}`);
+    div.dataset.id = p.id;
 
     let items = 0
-    for( const det of p.detalles){
-        items += det.cantidad
+    for (const det of p.detalles) {
+      items += det.cantidad
     }
 
-  div.innerHTML = `
+    div.innerHTML = `
     <div class="pedido-header">
       <h4>Pedido #${p.id}</h4>
       <span class="estado">${p.estado}</span>
@@ -93,15 +73,22 @@ console.log(pedidosMostrar)
     </div>
   `;
 
-     div.addEventListener("click", () => {
-        abrirModalConPedido(p);  // función que vas a crear
-        }); 
+  div.addEventListener("click", async () => {
+  const idPedido = Number(div.dataset.id);
+
+  try {
+    const pedidoCompleto = await mostrarPedidoPorId(idPedido);
+    abrirModalConPedido(pedidoCompleto);
+  } catch (error) {
+    console.error("Error al traer el pedido:", error);
+  }
+});
 
 
-  pedidos?.appendChild(div);
-}
-//numero de pedido, fecha, estado
-// detALLE DE DOS PRODUCTOS, total de productos y precio total
+    pedidos?.appendChild(div);
+  }
+  //numero de pedido, fecha, estado
+  // detALLE DE DOS PRODUCTOS, total de productos y precio total
 }
 
 // Cargar todos los pedidos
@@ -130,7 +117,7 @@ async function cargarPedidosPorEstado(estado: string) {
       return;
     }
     const email = JSON.parse(localStorage.getItem("usuario")!).email;
-    const pedidosMostrar = await mostrarPedidosPorEstadoCliente(email,estado);
+    const pedidosMostrar = await mostrarPedidosPorEstadoCliente(email, estado);
     await renderizarPedidos(pedidosMostrar);
   } catch (error) {
     console.error(`Error al cargar pedidos con estado ${estado}:`, error);
@@ -146,15 +133,15 @@ filtroSelect?.addEventListener("change", () => {
 
 
 /*   Funcion para abrir el modal del pedido Cliente */
-function abrirModalConPedido(pedido: any){
-    const modal = document.getElementById("modalPedido")!;
-    const div = document.getElementById("modalPedidoContenido")!;
-    
-    div.classList = "";
-    div.classList.add(`pedido-${pedido.estado.toLowerCase()}`); 
+function abrirModalConPedido(pedido: any) {
+  const modal = document.getElementById("modalPedido")!;
+  const div = document.getElementById("modalPedidoContenido")!;
 
-    const infoEntregaHTML = pedido.infoEntrega
-      ? `
+  div.classList = "";
+  div.classList.add(`pedido-${pedido.estado.toLowerCase()}`);
+
+  const infoEntregaHTML = pedido.infoEntrega
+    ? `
         <div class="modal_body_info">
           <h4>Información de Entrega</h4>
           <p><strong>Dirección:</strong> ${pedido.infoEntrega.direccion}</p>
@@ -163,7 +150,7 @@ function abrirModalConPedido(pedido: any){
           <p><strong>Nota Adicional:</strong> ${pedido.infoEntrega.notaAdicional}</p>
         </div>
       `
-      : `
+    : `
         <div class="modal_body_info">
           <h4>Información de Entrega</h4>
           <span style="font-weight: bold; color: #b00;">
@@ -172,7 +159,7 @@ function abrirModalConPedido(pedido: any){
         </div>
       `;
 
-    div.innerHTML = `
+  div.innerHTML = `
       <div class="pedido-header">
           <h4>Pedido #${pedido.id}</h4>
           <span class="estado">${pedido.estado}</span>
@@ -188,9 +175,9 @@ function abrirModalConPedido(pedido: any){
         <h4>Productos</h4>
         <ul>
           ${pedido.detalles
-            .map(
-              (d: any) =>
-                `
+      .map(
+        (d: any) =>
+          `
                 <li class="item-producto">
                   <img src="${d.productoDto.imagen}" alt="${d.productoDto.nombre}">
                   <span>${d.productoDto.nombre}</span>
@@ -198,8 +185,8 @@ function abrirModalConPedido(pedido: any){
                   <span>x${d.cantidad}</span>
                 </li>
                 `
-            )
-            .join("")}
+      )
+      .join("")}
         </ul>
 
         <p class="detallePedido_total"><strong>Total:</strong> $${pedido.total}</p>
@@ -207,7 +194,7 @@ function abrirModalConPedido(pedido: any){
       </div>
     `;
 
-    modal.classList.remove("hidden");
+  modal.classList.remove("hidden");
 }
 
 

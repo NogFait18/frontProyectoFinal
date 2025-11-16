@@ -8,11 +8,11 @@ import type { IProductos } from "./IProductos"
 //     //productos?: [IProductos]
 // }
 export interface ICategoria {
-    id: number;
+    id?: number;
     nombre: string;
     imagen: string;
     descripcion: string;
-    productos: IProductos[];
+    productos?: IProductos[];
 }
 
 export interface ICategoriaMostrar{
@@ -21,3 +21,4 @@ export interface ICategoriaMostrar{
     imagen:String
     descripcion:String
 }
+

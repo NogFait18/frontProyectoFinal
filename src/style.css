@@ -146,6 +146,7 @@ label {
     z-index: 10;
 }
 
+
 .nav_ul {
     display: flex;
     gap: 1rem;

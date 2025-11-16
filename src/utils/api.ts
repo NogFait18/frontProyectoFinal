@@ -278,8 +278,7 @@ export const obtenerProductoPorId = async (id: number) => {
     return res.json();
 };
 
-//CRUD para Pedidos
-
+//--------------  CRUD para Pedidos ------------------
 //Metodo GET
 export const mostrarPedidos = async () => {
   const response = await fetch(`${API_URL}/pedidos`, { method: "GET" });
@@ -325,6 +324,21 @@ export const mostrarPedidosCliente = async (email: string) => {
   return await response.json();
 };
 
+// Meteodo para traer un pedido por id de pedido
+//Metodo GET
+export const mostrarPedidoPorId = async (id: number) => {
+  const response = await fetch(`${API_URL}/pedidos/${id}`, { method: "GET" });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  const result = await response.json();
+  console.log("Pedidos encontrados con éxito");
+  return result;
+};
+
 //Metodo GET para mostrar pedidos por estado
 export const mostrarPedidosPorEstadoCliente = async (email:string, estado: string) => {
   const url = `${API_URL}/usuario/traerPedidos/${email}/${estado}`;
@@ -340,4 +354,14 @@ export const mostrarPedidosPorEstadoCliente = async (email:string, estado: strin
   console.log(`Pedidos (${estado}) encontrados con éxito`);
   return result;
 };
+
+
+// ----------- ENPOINTS para CARRITO -----------
+
+
+
+
+
+
+
 

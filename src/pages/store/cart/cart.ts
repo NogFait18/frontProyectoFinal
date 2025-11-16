@@ -95,7 +95,7 @@ function renderCartItems(): void {
                 <span class="cart-item-total">$${itemTotalPrice.toFixed(2)}</span>
                 <button class="cart-item-remove" data-action="remove">&times;</button>
             `;
-            cartItemsList.insertBefore(itemElement, cartEmptyMessage);
+            cartItemsList?.insertBefore(itemElement, cartEmptyMessage);
         });
     }
 }

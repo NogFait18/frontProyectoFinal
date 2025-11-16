@@ -9,7 +9,7 @@ const dataCategorias = await obtenerCategorias();
 
 
 // -------------- creacion de las tarjetas  de productos ------------------
-dataProductos.forEach((e: IProductosMostrar) => {
+const renderizarTarjetas = dataProductos.forEach((e: IProductosMostrar) => {
   const cardGroup = document.createElement("div");
   cardGroup.classList.add("producto_group");
 
@@ -167,12 +167,12 @@ btnAgregarPro.addEventListener("click", () => {
     } catch (err) {
       console.log("Error al crear producto: " + err);
     }
-
+    
     overlay.remove();
-
+    
     const cardGroup = document.createElement("div");
     cardGroup.classList.add("producto_group");
-
+    
     cardGroup.innerHTML = `
       <div class="productos_header">
         <span>ID</span>
@@ -185,7 +185,7 @@ btnAgregarPro.addEventListener("click", () => {
         <span>Acción</span>
       </div>
       <div class="producto_row">
-        <span></span>
+        <span>...</span>
         <img src="${data.imagen}" alt="${data.nombre}" class="producto_img">
         <span>${data.nombre}</span>
         <p>${data.descripcion}</p>
@@ -305,3 +305,7 @@ const abrirModalEditar = (
     overlay.remove();
   });
 };
+
+// INICIALIZACION
+
+renderizarTarjetas();
