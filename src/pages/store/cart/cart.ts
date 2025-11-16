@@ -2,6 +2,7 @@
 
 import type { ICartItem } from '../../../types/ICart';
 import type { IProductos } from '../../../types/IProductos';
+import { crearPedido, obtenerIdUsuario } from '../../../utils/api';
 
 // Importamos las funciones, NO las definimos aquí
 import { getCart, saveCart, clearCart } from '../../../utils/cart';
@@ -61,7 +62,7 @@ let notificationContainer: HTMLDivElement | null;
 // (Estas funciones no cambian, pero ahora deben chequear si los elementos existen)
 function renderCartItems(): void {
     const cart = getCart();
-    
+
     // ¡Chequeo de seguridad!
     if (!cartItemsList || !cartEmptyMessage) return;
 
@@ -80,7 +81,7 @@ function renderCartItems(): void {
             const itemElement = document.createElement('div');
             itemElement.className = 'cart-item';
             itemElement.dataset.productId = item.id.toString();
-            
+
             itemElement.innerHTML = `
                 <img src="${item.imagen}" alt="${item.nombre}" class="cart-item-image">
                 <div class="cart-item-info">
@@ -100,11 +101,13 @@ function renderCartItems(): void {
     }
 }
 
+// Funcion para calcular subtotal creo 
+
 function updateSummary(): void {
     const cart = getCart();
     const subtotal = cart.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
-    const total = subtotal > 0 ? subtotal + COSTO_ENVIO_FIJO : 0;
-    
+    const total = subtotal > 0 ? subtotal : 0;
+
     // ¡Chequeo de seguridad!
     if (summarySubtotal) summarySubtotal.textContent = `$${subtotal.toFixed(2)}`;
     if (summaryShipping) summaryShipping.textContent = `$${COSTO_ENVIO_FIJO.toFixed(2)}`;
@@ -119,7 +122,7 @@ function renderPage(): void {
     updateSummary();
 }
 
-// --- MANEJO DE EVENTOS ---
+// --- MANEJO DE EVENTOS --- para sumar, restar o remover los items
 function handleCartActions(event: MouseEvent): void {
     const target = event.target as HTMLElement;
     const action = target.dataset.action;
@@ -138,46 +141,102 @@ function handleCartActions(event: MouseEvent): void {
     }
 }
 
-async function handleSubmitOrder(event: Event): Promise<void> {
+async function obtenerInfoEntrega(event: Event): Promise<void> {
     event.preventDefault();
-    
+
     // Obtenemos los datos del formulario (esto está bien dentro del evento)
     const phone = (document.getElementById('checkout-phone') as HTMLInputElement).value;
     const address = (document.getElementById('checkout-address') as HTMLInputElement).value;
     const paymentMethod = (document.getElementById('checkout-payment') as HTMLSelectElement).value;
     const notes = (document.getElementById('checkout-notes') as HTMLTextAreaElement).value;
-    
+
     if (!phone || !address) {
         showNotification('Por favor, completa el teléfono y la dirección.', 'error');
         return;
     }
 
-    const cart = getCart();
-    const orderData = {
-        telefono: phone,
-        direccionEntrega: address,
-        metodoPago: paymentMethod,
-        notas: notes,
-        items: cart.map(item => ({ idProducto: item.id, cantidad: item.cantidad })),
-        total: parseFloat(summaryTotal?.textContent?.replace('$', '') || '0')
+    // aca estamos tocando nosotros
+
+    // recuperar carrito del localStorage
+    const carritoLS = localStorage.getItem("carrito");
+    if (!carritoLS) {
+        showNotification('El carrito está vacío.', 'error');
+        return;
+    }
+
+    // parseamos el carrito
+    const carrito = JSON.parse(carritoLS);
+
+    // convertimos los datos del carro a como lo debemos dejar en el formato para la request
+    const detalles = carrito.map((item: any) => ({
+        cantidad: item.cantidad,
+        productoId: item.id
+    }))
+
+    // armamos estructura para request
+
+    const pedidoFinal = {
+        dto: {
+            detalles: detalles
+        },
+        infoEntrega: {
+            telefono: phone,
+            direccion: address,
+            formaDePago: paymentMethod.toUpperCase(),
+            notaAdicional: notes
+        }
     };
+    console.log("Console log para debugear el carro, ver formato de pedido final");
+    console.log(pedidoFinal);
 
-    console.log('Enviando pedido a la API:', orderData);
+    // traemos un usuario
+    const usuarioLocalStorage = localStorage.getItem("usuario");
+
+    let usuarioParseado: any = null;
+
+    if (usuarioLocalStorage) {
+        try {
+            const primerParse = JSON.parse(usuarioLocalStorage);
+            // Si al parsear, todavía es un string JSON → parsear de nuevo
+            usuarioParseado = typeof primerParse === "string"
+                ? JSON.parse(primerParse)
+                : primerParse;
+        } catch (error) {
+            console.error("Error al parsear usuario:", error);
+        }
+    }
+
+    // Obtener el email del usuario
+    const emailUsuario = usuarioParseado?.email;
+
+    // obtenemos el id del usuario
+    const idUsuario = await obtenerIdUsuario(emailUsuario);
+    if (!idUsuario) {
+        showNotification("Error: no se pudo obtener el ID del usuario", "error");
+        return;
+    }
+    // le pasamos a la funcion del api que crea el pedido, con el data y el id del usuario
     try {
-        // ... (Tu simulación de API)
-        await new Promise(resolve => setTimeout(resolve, 1000)); 
+        const respuesta = await crearPedido(idUsuario, pedidoFinal);
+        console.log("Respuesta del backend:", respuesta);
 
-        showNotification('¡Pedido realizado con éxito!', 'success');
-        clearCart();
-        renderPage();
-        if (checkoutModal) closeModal(checkoutModal);
-        if (checkoutForm) checkoutForm.reset();
+        showNotification("¡Pedido creado con éxito!", "success");
+
+        // limpiar carrito
+        localStorage.removeItem("carrito");
+
+        // cerrar modal si existe
+        const checkoutModal = document.getElementById("checkout-modal");
+        if (checkoutModal) checkoutModal.classList.add("hidden");
+        window.location.href = "../../client/orders/orders.html";
 
     } catch (error) {
-        console.error('Error al crear el pedido:', error);
-        showNotification('Error al procesar el pedido. Inténtalo de nuevo.', 'error');
+        console.error("Error creando el pedido:", error);
+        showNotification("Error al crear el pedido.", "error");
     }
-}
+
+};
+
 
 // --- Funciones de Modales y Notificaciones ---
 function openModal(modal: HTMLDivElement | null): void {
@@ -202,9 +261,9 @@ function showNotification(message: string, type: 'success' | 'error'): void {
     notif.style.backgroundColor = type === 'success' ? '#d4edda' : '#f8d7da';
     notif.style.borderColor = type === 'success' ? '#c3e6cb' : '#f5c6cb';
     notif.textContent = message;
-    
+
     notificationContainer.appendChild(notif);
-    
+
     setTimeout(() => { notif.remove(); }, 3000);
 }
 
@@ -236,8 +295,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnEmptyCart) btnEmptyCart.addEventListener('click', () => openModal(confirmEmptyModal));
     if (cartItemsList) cartItemsList.addEventListener('click', handleCartActions);
     if (btnCancelCheckout) btnCancelCheckout.addEventListener('click', () => closeModal(checkoutModal));
-    if (checkoutForm) checkoutForm.addEventListener('submit', handleSubmitOrder);
-    
+    if (checkoutForm) checkoutForm.addEventListener('submit', obtenerInfoEntrega);
+
     if (btnCancelEmpty) btnCancelEmpty.addEventListener('click', () => closeModal(confirmEmptyModal));
     if (btnConfirmEmpty) btnConfirmEmpty.addEventListener('click', () => {
         clearCart();

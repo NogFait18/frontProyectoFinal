@@ -20,7 +20,7 @@ const API_URL = `${import.meta.env.VITE_URL_API}`;
 
 /* agrego este metodo que lo envuelve en una funcion para ser llamada */
 export const mostrarUsuarios = async () => {
-  const response = await fetch(`${API_URL}`, { method: "GET" });
+  const response = await fetch(`${API_URL}/usuario`, { method: "GET" });
   
   if (!response.ok) {
     throw new Error(`Error HTTP: ${response.status}`);
@@ -356,9 +356,71 @@ export const mostrarPedidosPorEstadoCliente = async (email:string, estado: strin
 };
 
 
-// ----------- ENPOINTS para CARRITO -----------
+// crear un pedido con lo que tenemos en un carrito
+
+// POST
+export const crearPedido = async (idCliente: number, data: any) => {
+  const url = `${API_URL}/pedidos/crear/${idCliente}`;
+
+  const response = await fetch(url, { 
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  const result = await response.json();
+  console.log(`Pedido creado con exito`);
+  return result;
+};
 
 
+// método auxiliar para devolver id de usuario
+export const obtenerIdUsuario = async (mail: string) => {
+  try {
+    const listaUsuarios = await mostrarUsuarios();
+
+    if (!Array.isArray(listaUsuarios)) {
+      console.error("La API NO devolvió un array de usuarios:", listaUsuarios);
+      return null;
+    }
+
+    // Buscar usuario por email
+    const usuarioEncontrado = listaUsuarios.find(u => u.email === mail);
+
+    if (!usuarioEncontrado) {
+      console.warn("No se encontró usuario con el email:", mail);
+      return null;
+    }
+
+    return usuarioEncontrado.id;
+
+  } catch (error) {
+    console.error("Error obteniendo ID del usuario:", error);
+    return null;
+  }
+};
+
+// cambiar estado pedido
+//Metodo PATCH para cambiar estado del pedido
+export const cambiarEstadoPedido = async (id: number, estado: string) => {
+  const response = await fetch(`${API_URL}/pedidos/${id}/estado?estado=${estado}`, {
+    method: "PATCH",
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error HTTP ${response.status}: ${errorText}`);
+  }
+
+  return await response.json();
+};
 
 
 

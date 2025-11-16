@@ -1,16 +1,34 @@
-import { mostrarPedidosCliente, mostrarPedidos, mostrarPedidosPorEstadoCliente, traerUsuarioPorId } from "../../../utils/api";
+import { mostrarPedidosCliente, mostrarPedidosPorEstadoCliente } from "../../../utils/api";
 import {  mostrarPedidoPorId } from "../../../utils/api";
 
 
 //Logica del sidebar de categorias
 
 // ------------------- SELECTORES -------------------
-const categoriaPanel = document.getElementById("categoriasPanel") as HTMLElement | null;
+//const categoriaPanel = document.getElementById("categoriasPanel") as HTMLElement | null;
 
 const nombreCliente = document.getElementById("user-name") as HTMLElement | null;
 
+// selector contador carrito
+const contadorCarrito = document.getElementById("cart_count") as HTMLElement | null;
+
 // ------------------- LOGICA -------------------
 
+
+// fx para actualizar el gadget del carrito
+const infoLocalStorage = localStorage.getItem("carrito");
+if(infoLocalStorage){
+    const cart = JSON.parse(infoLocalStorage);
+    const cantidadProductos = cart.length;
+    console.log("lenght del array de cart");
+    console.log(cantidadProductos);
+    
+
+    if(contadorCarrito){
+        contadorCarrito.textContent = cantidadProductos;
+    }
+    
+};
 
 
 // traer un usuario para renderiizar el nombre
@@ -66,8 +84,13 @@ async function renderizarPedidos(pedidosMostrar: any[]) {
     </div>
     <div class="pedido-body">
       <p><strong>Fecha:</strong> ${p.fecha}</p>
-      <p><strong>+</strong> ${p.detalles[0].productoDto.nombre} (x${p.detalles[0].cantidad})</p>
-      <p><strong>+</strong> ${p.detalles[1].productoDto.nombre} (x${p.detalles[1].cantidad})</p>
+      ${p.detalles
+        .slice(0, 2) // solo los primeros 2
+        .map((det: any) => `
+    <p><strong>+</strong> ${det.productoDto.nombre} (x${det.cantidad})</p>
+  `)
+        .join("")
+      }
       <p><strong>Productos:</strong> ${items}</p>
       <p><strong>Total:</strong> $${p.total}</p>
     </div>

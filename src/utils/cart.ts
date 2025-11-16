@@ -1,15 +1,15 @@
 
-// (Ajusta esta ruta si es necesario)
+// importacion de 
 import type { ICartItem } from '../types/ICart'; 
 
 // La "llave" se define y exporta AQUÍ
-export const CART_STORAGE_KEY = 'foodStoreCart';
+export const nombreCarrito = 'carrito';
 
 /**
  * Obtiene el carrito actual desde localStorage.
  */
 export function getCart(): ICartItem[] {
-  const cartJson = localStorage.getItem(CART_STORAGE_KEY);
+  const cartJson = localStorage.getItem(nombreCarrito);
   return cartJson ? JSON.parse(cartJson) : [];
 }
 
@@ -17,14 +17,14 @@ export function getCart(): ICartItem[] {
  * Guarda el carrito en localStorage.
  */
 export function saveCart(cart: ICartItem[]): void {
-  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  localStorage.setItem(nombreCarrito, JSON.stringify(cart));
 }
 
 /**
  * Limpia el carrito de localStorage.
  */
 export function clearCart(): void {
-  localStorage.removeItem(CART_STORAGE_KEY);
+  localStorage.removeItem(nombreCarrito);
 }
 
 

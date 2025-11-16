@@ -1586,3 +1586,31 @@ CONTENIDO DEL MODAL
     font-size: 1.5rem;
 }
 /*     Fin Estilos del pedido de Cliente     */
+
+
+.carrito_logo_container{
+    width: 45px;
+    position: relative;
+
+}
+
+.carrito_svg{
+    position: absolute;
+    width: 30px;
+    height: auto;
+    right: 0%;
+}
+
+.carrito_contador{
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    color: white;
+    z-index: 100;
+    border-radius: 100%;
+    text-align: center;
+    padding: auto;
+}
+
+
+

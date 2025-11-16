@@ -2,6 +2,29 @@ import type { ICartItem } from "../../../types/ICart";
 import { getCart, saveCart } from '../../../utils/cart';
 // ---
 
+
+// --  LOGICA PARA CAMBIAR EL WIDGET DEL CARRITO --
+// selector contador carrito
+const contadorCarrito = document.getElementById("cart_count") as HTMLElement | null;
+
+// fx para actualizar el gadget del carrito
+const infoLocalStorage = localStorage.getItem("carrito");
+if(infoLocalStorage){
+  const cart = JSON.parse(infoLocalStorage);
+  const cantidadProductos = cart.length;
+  console.log("lenght del array de cart");
+  console.log(cantidadProductos);
+  
+  
+  if(contadorCarrito){
+    contadorCarrito.textContent = cantidadProductos;
+  }
+  
+};
+// -- hasta aca llega la logica de cambiar la cantidad del carrito --
+
+
+
 interface ICategoria {
   nombre: String;
   imagen: string;
@@ -144,7 +167,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const productoReal = await getProductById(productId);
-    renderProduct(productoReal);
+    renderProduct(productoReal);
     setupAddToCartButton(productoReal); // <-- Llama a la función corregida
 
   } catch (error) {

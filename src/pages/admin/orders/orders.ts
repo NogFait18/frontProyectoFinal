@@ -1,4 +1,4 @@
-import { cambiarEstadoPedido, mostrarPedidos, mostrarPedidosPorEstado, traerUsuarioPorId } from "../../../utils/api";
+import { cambiarEstadoPedido, mostrarPedidos, mostrarPedidosPorEstado } from "../../../utils/api";
 
 // =====================
 // ELEMENTOS DEL DOM
@@ -16,6 +16,22 @@ const btnGuardar = document.getElementById("guardar-estado")!;
 // FUNCIONES
 // =====================
 
+
+
+// Cargar todos los pedidos
+async function cargarPedidos() {
+  pedidos!.innerHTML = "<p>Cargando pedidos...</p>";
+
+  try {
+    const pedidosMostrar = await mostrarPedidos();
+    await renderizarPedidos(pedidosMostrar);
+  } catch (error) {
+    console.error("Error al cargar pedidos:", error);
+  }
+}
+
+
+
 // Renderizar pedidos
 async function renderizarPedidos(pedidosMostrar: any[]) {
   pedidos!.innerHTML = ""; // Limpia el contenedor
@@ -31,7 +47,6 @@ async function renderizarPedidos(pedidosMostrar: any[]) {
 
   // Crear cada card
   for (const p of pedidosMostrar) {
-    const usuario = await traerUsuarioPorId(p.idCliente || p.id);
 
     const div = document.createElement("div");
     div.classList.add("pedido-card", `pedido-${p.estado.toLowerCase()}`);
@@ -42,7 +57,6 @@ async function renderizarPedidos(pedidosMostrar: any[]) {
         <span class="estado">${p.estado}</span>
       </div>
       <div class="pedido-body">
-        <p><strong>Cliente:</strong> ${usuario.nombre} ${usuario.apellido}</p>
         <p><strong>Fecha:</strong> ${p.fecha}</p>
         <p><strong>Productos:</strong> ${p.detalles.length}</p>
         <p><strong>Total:</strong> $${p.total}</p>
@@ -62,17 +76,7 @@ async function renderizarPedidos(pedidosMostrar: any[]) {
   });
 }
 
-// Cargar todos los pedidos
-async function cargarPedidos() {
-  pedidos!.innerHTML = "<p>Cargando pedidos...</p>";
 
-  try {
-    const pedidosMostrar = await mostrarPedidos();
-    await renderizarPedidos(pedidosMostrar);
-  } catch (error) {
-    console.error("Error al cargar pedidos:", error);
-  }
-}
 
 // Cargar pedidos según estado
 async function cargarPedidosPorEstado(estado: string) {

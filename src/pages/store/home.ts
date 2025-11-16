@@ -19,7 +19,31 @@ const cardContainer = document.querySelector(
     ".card_container-productos"
 ) as HTMLElement | null;
 
+
+// selector contador carrito
+const contadorCarrito = document.getElementById("cart_count") as HTMLElement | null;
+
+
+
 // ------------------- LOGICA -------------------
+
+// fx para actualizar el gadget del carrito
+const infoLocalStorage = localStorage.getItem("carrito");
+if(infoLocalStorage){
+    const cart = JSON.parse(infoLocalStorage);
+    const cantidadProductos = cart.length;
+    console.log("lenght del array de cart");
+    console.log(cantidadProductos);
+    
+
+    if(contadorCarrito){
+        contadorCarrito.textContent = cantidadProductos;
+    }
+    
+};
+
+
+
 
 // fx para cargar las categorias en el aside y poder usarlo de filtros
 const cargarCategorias = async (): Promise<void> => {
