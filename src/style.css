@@ -1537,11 +1537,19 @@ CONTENIDO DEL MODAL
   padding: 20px;
   border-radius: 10px;
   width: 400px;
-  height: 75vh;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
-
+.modal_body_info{
+    border-top: 1px solid rgb(196, 189, 189);
+    border-bottom: 1px solid rgb(182, 180, 180);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:5px;
+}
 .cerrar{
     margin-left: 21rem;
     cursor: pointer;

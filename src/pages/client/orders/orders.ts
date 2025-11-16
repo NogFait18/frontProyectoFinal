@@ -146,47 +146,70 @@ filtroSelect?.addEventListener("change", () => {
 
 
 /*   Funcion para abrir el modal del pedido Cliente */
-
 function abrirModalConPedido(pedido: any){
     const modal = document.getElementById("modalPedido")!;
     const div = document.getElementById("modalPedidoContenido")!;
+    
     div.classList = "";
     div.classList.add(`pedido-${pedido.estado.toLowerCase()}`); 
 
-      div.innerHTML = `
-
-        <div class="pedido-header">
-            <h4>Pedido #${pedido.id}</h4>
-            <span class= "estado" >${pedido.estado}</span>
+    const infoEntregaHTML = pedido.infoEntrega
+      ? `
+        <div class="modal_body_info">
+          <h4>Información de Entrega</h4>
+          <p><strong>Dirección:</strong> ${pedido.infoEntrega.direccion}</p>
+          <p><strong>Teléfono:</strong> ${pedido.infoEntrega.telefono}</p>
+          <p><strong>Forma de pago:</strong> ${pedido.infoEntrega.formaDePago}</p>
+          <p><strong>Nota Adicional:</strong> ${pedido.infoEntrega.notaAdicional}</p>
         </div>
-    <div class = "modal_body">    
+      `
+      : `
+        <div class="modal_body_info">
+          <h4>Información de Entrega</h4>
+          <span style="font-weight: bold; color: #b00;">
+            Pedido sin información de entrega
+          </span>
+        </div>
+      `;
+
+    div.innerHTML = `
+      <div class="pedido-header">
+          <h4>Pedido #${pedido.id}</h4>
+          <span class="estado">${pedido.estado}</span>
+      </div>
+
+      <div class="modal_body">
+
+        ${infoEntregaHTML}
+
         <p><strong>Fecha:</strong> ${pedido.fecha}</p>
         <p><strong>Estado:</strong> ${pedido.estado}</p>
 
         <h4>Productos</h4>
         <ul>
-        ${pedido.detalles
+          ${pedido.detalles
             .map(
-        (d: any) =>
-
-        `   <li class="item-producto">
-            <img src="${d.productoDto.imagen}" alt="${d.productoDto.nombre}">
-            <span>${d.productoDto.nombre}</span>
-            <span>$${d.productoDto.precio}</span>
-            <span>x${d.cantidad}</span>
-            </li>`
-        )
-        .join("")}
-
+              (d: any) =>
+                `
+                <li class="item-producto">
+                  <img src="${d.productoDto.imagen}" alt="${d.productoDto.nombre}">
+                  <span>${d.productoDto.nombre}</span>
+                  <span>$${d.productoDto.precio}</span>
+                  <span>x${d.cantidad}</span>
+                </li>
+                `
+            )
+            .join("")}
         </ul>
 
-            <p class = "detallePedido_total" ><strong>Total:</strong> $${pedido.total}</p>
-        </div>
-        `;
+        <p class="detallePedido_total"><strong>Total:</strong> $${pedido.total}</p>
 
-  modal.classList.remove("hidden");
+      </div>
+    `;
 
+    modal.classList.remove("hidden");
 }
+
 
 
 
